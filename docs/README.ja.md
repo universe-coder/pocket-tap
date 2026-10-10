@@ -7,6 +7,15 @@
 [![Windows 版をダウンロード](https://img.shields.io/badge/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
 [![macOS / Linux 版 ZIP をダウンロード](https://img.shields.io/badge/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
+## スクリーンショット
+
+<table>
+<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="タッチパッド"><br><sub>タッチパッド</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="キーボード"><br><sub>キーボード</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="アラビア語（右から左）"><br><sub>アラビア語（右から左）</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="日本語"><br><sub>日本語</sub></td><td></td></tr>
+</table>
+
+<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="PC 用プログラム：スマートフォンで QR コードを読み取ります"><br><sub>PC 用プログラム：スマートフォンで QR コードを読み取ります</sub></p>
+
 2 つの部分からなります：
 
 - **PC 用プログラム**（`pc_remote`、Python）：スマートフォンからの指示でキーを押し、マウスを動かします。メインは Windows で、macOS と Linux（X11）でも動作します。

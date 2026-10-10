@@ -7,6 +7,15 @@ Das Handy wird zur Fernbedienung für den PC, über das WLAN zu Hause. Gedacht z
 [![Für Windows herunterladen](https://img.shields.io/badge/Herunterladen-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
 [![ZIP für macOS und Linux herunterladen](https://img.shields.io/badge/Herunterladen-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
+## Screenshots
+
+<table>
+<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="Touchpad"><br><sub>Touchpad</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="Tastatur"><br><sub>Tastatur</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="Arabisch, von rechts nach links"><br><sub>Arabisch, von rechts nach links</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="Japanisch"><br><sub>Japanisch</sub></td><td></td></tr>
+</table>
+
+<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="PC-Programm: QR-Code mit dem Handy scannen"><br><sub>PC-Programm: QR-Code mit dem Handy scannen</sub></p>
+
 Zwei Teile:
 
 - **Das PC-Programm** (`pc_remote`, Python) drückt Tasten und bewegt die Maus auf Befehl des Handys. Hauptplattform ist Windows; macOS und Linux (X11) funktionieren ebenfalls.

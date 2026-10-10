@@ -9,6 +9,15 @@
 [![تنزيل لنظام Windows](https://img.shields.io/badge/%D8%AA%D9%86%D8%B2%D9%8A%D9%84-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
 [![تنزيل ZIP لنظامي macOS وLinux](https://img.shields.io/badge/%D8%AA%D9%86%D8%B2%D9%8A%D9%84-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
+## لقطات الشاشة
+
+<table>
+<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="لوحة اللمس"><br><sub>لوحة اللمس</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="لوحة المفاتيح"><br><sub>لوحة المفاتيح</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="العربية، من اليمين إلى اليسار"><br><sub>العربية، من اليمين إلى اليسار</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="اليابانية"><br><sub>اليابانية</sub></td><td></td></tr>
+</table>
+
+<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="برنامج الكمبيوتر: امسح رمز QR بهاتفك"><br><sub>برنامج الكمبيوتر: امسح رمز QR بهاتفك</sub></p>
+
 يتكوّن من جزأين:
 
 - **برنامج الكمبيوتر** (`pc_remote`، بلغة Python): يضغط المفاتيح ويحرّك الفأرة وفق أوامر الهاتف. المنصة الأساسية هي Windows، ويعمل أيضًا على macOS وLinux (X11).

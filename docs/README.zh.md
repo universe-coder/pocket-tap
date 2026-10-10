@@ -7,6 +7,15 @@
 [![下载 Windows 版](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
 [![下载 macOS / Linux 版 ZIP](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
+## 截图
+
+<table>
+<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="触控板"><br><sub>触控板</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="键盘"><br><sub>键盘</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="阿拉伯语，从右到左"><br><sub>阿拉伯语，从右到左</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="日语"><br><sub>日语</sub></td><td></td></tr>
+</table>
+
+<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="电脑端程序：用手机扫描二维码"><br><sub>电脑端程序：用手机扫描二维码</sub></p>
+
 由两部分组成：
 
 - **电脑端程序**（`pc_remote`，Python）：根据手机发来的指令按键和移动鼠标。主要平台是 Windows，也支持 macOS 和 Linux（X11）。

@@ -7,6 +7,15 @@
 [![Скачать для Windows](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
 [![Скачать ZIP для macOS и Linux](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
+## Скриншоты
+
+<table>
+<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="Тачпад"><br><sub>Тачпад</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="Клавиатура"><br><sub>Клавиатура</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="Арабский, справа налево"><br><sub>Арабский, справа налево</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="Японский"><br><sub>Японский</sub></td><td></td></tr>
+</table>
+
+<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="Программа на ПК: отсканируйте QR-код телефоном"><br><sub>Программа на ПК: отсканируйте QR-код телефоном</sub></p>
+
 Состоит из двух частей:
 
 - **Программа для ПК** (`pc_remote`, Python). Нажимает клавиши и двигает мышь по командам с телефона. Windows основная платформа, также работает на macOS и Linux (X11).

@@ -10,6 +10,15 @@ Turn your phone into a remote control for your PC over home Wi-Fi. Built for wat
 [![tests](https://github.com/universe-coder/pocket-tap/actions/workflows/tests.yml/badge.svg)](https://github.com/universe-coder/pocket-tap/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+## Screenshots
+
+<table>
+<tr><td align="center"><img src="docs/screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="docs/screenshots/phone-touchpad.png" width="180" alt="Touchpad"><br><sub>Touchpad</sub></td><td align="center"><img src="docs/screenshots/phone-keyboard.png" width="180" alt="Keyboard"><br><sub>Keyboard</sub></td></tr>
+<tr><td align="center"><img src="docs/screenshots/phone-arabic.png" width="180" alt="Arabic, right to left"><br><sub>Arabic, right to left</sub></td><td align="center"><img src="docs/screenshots/phone-japanese.png" width="180" alt="Japanese"><br><sub>Japanese</sub></td><td></td></tr>
+</table>
+
+<p align="center"><img src="docs/screenshots/pc-qr.png" width="520" alt="PC program: scan the QR code with your phone"><br><sub>PC program: scan the QR code with your phone</sub></p>
+
 Two parts:
 
 - **The PC program** (`pc_remote`, Python) presses keys and moves the mouse on commands from the phone. Windows is the main platform; macOS and Linux (X11) work too.
