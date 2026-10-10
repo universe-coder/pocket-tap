@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>PC Remote</title>
+  <link rel="manifest" href="/static/manifest.webmanifest">
+  <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span id="status" class="status status--off">Нет связи</span>
+    <button id="wake" class="chip" type="button" aria-pressed="false">Экран: авто</button>
+  </header>
+
+  <main>
+    <section id="tab-youtube" class="tab tab--active" aria-label="YouTube">
+      <button class="btn btn--hero" data-action="yt.play_pause" aria-label="Пауза / воспроизведение">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5v14l9-7zM14 5h3v14h-3zM19 5h3v14h-3z"/></svg>
+        <span>Пауза / Play</span>
+      </button>
+
+      <div class="row">
+        <button class="btn btn--big" data-action="yt.seek_back_10" data-repeat>−10 с</button>
+        <button class="btn btn--big" data-action="yt.seek_fwd_10" data-repeat>+10 с</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-action="yt.previous">⏮ Предыдущее</button>
+        <button class="btn" data-action="yt.next">Следующее ⏭</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-action="sys.volume_down" data-repeat>Громк. −</button>
+        <button class="btn" data-action="sys.volume_mute">Без звука</button>
+        <button class="btn" data-action="sys.volume_up" data-repeat>Громк. +</button>
+      </div>
+      <div class="row">
+        <button class="btn btn--small" data-action="yt.speed_down">Скорость −</button>
+        <button class="btn btn--small" data-action="yt.speed_up">Скорость +</button>
+        <button class="btn btn--small" data-action="yt.captions">Субтитры</button>
+        <button class="btn btn--small" data-action="yt.fullscreen">Во весь экран</button>
+      </div>
+      <p class="hint">Пауза, следующее и предыдущее работают всегда. Перемотка, скорость и полный экран нужны вкладке YouTube в фокусе: если не срабатывают, кликните по видео через «Тачпад».</p>
+    </section>
+
+    <section id="tab-touchpad" class="tab" aria-label="Тачпад">
+      <div id="pad" class="pad" role="application" aria-label="Тачпад: водите пальцем, касание — клик, двумя пальцами — прокрутка">
+        <span>Водите пальцем — курсор<br>Касание — клик, два пальца — прокрутка</span>
+      </div>
+      <div class="row">
+        <button class="btn" data-click="left">Левая</button>
+        <button class="btn" data-click="right">Правая</button>
+      </div>
+      <div class="row">
+        <button class="btn btn--small" data-action="browser.back">← Назад</button>
+        <button class="btn btn--small" data-action="browser.refresh">Обновить</button>
+        <button class="btn btn--small" data-action="browser.forward">Вперёд →</button>
+      </div>
+      <label class="sens">Чувствительность <input id="sens" type="range" min="1" max="5" step="0.5" value="2.5"></label>
+    </section>
+
+    <section id="tab-keyboard" class="tab" aria-label="Клавиатура">
+      <form id="text-form" class="text-form">
+        <input id="text" type="text" autocomplete="off" autocapitalize="off" placeholder="Текст для ввода на ПК" enterkeyhint="send">
+        <button class="btn" type="submit">Ввести</button>
+      </form>
+      <div class="row">
+        <button class="btn" data-keys="enter">Enter</button>
+        <button class="btn" data-keys="backspace" data-repeat>⌫</button>
+        <button class="btn" data-keys="esc">Esc</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-keys="tab">Tab</button>
+        <button class="btn" data-keys="space">Пробел</button>
+        <button class="btn" data-keys="up" data-repeat>↑</button>
+      </div>
+      <div class="row">
+        <button class="btn" data-keys="left" data-repeat>←</button>
+        <button class="btn" data-keys="down" data-repeat>↓</button>
+        <button class="btn" data-keys="right" data-repeat>→</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar">
+    <button class="tabbar__item tabbar__item--active" data-tab="youtube">YouTube</button>
+    <button class="tabbar__item" data-tab="touchpad">Тачпад</button>
+    <button class="tabbar__item" data-tab="keyboard">Клавиатура</button>
+  </nav>
+
+  <div id="pair" class="pair" hidden>
+    <h1>Нужно подключение</h1>
+    <p>Запустите программу на ПК и отсканируйте QR-код камерой телефона.</p>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
