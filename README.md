@@ -7,8 +7,15 @@ Turn your phone into a remote control for your PC over home Wi-Fi. Built for wat
 [![Download for Windows](https://img.shields.io/badge/Download-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
 [![Download ZIP for macOS and Linux](https://img.shields.io/badge/Download-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
+[![Release](https://img.shields.io/github/v/release/universe-coder/pocket-tap?label=release&color=2ea44f)](https://github.com/universe-coder/pocket-tap/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/universe-coder/pocket-tap/total?color=2ea44f)](https://github.com/universe-coder/pocket-tap/releases)
 [![tests](https://github.com/universe-coder/pocket-tap/actions/workflows/tests.yml/badge.svg)](https://github.com/universe-coder/pocket-tap/actions/workflows/tests.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/github/license/universe-coder/pocket-tap?color=blue)](LICENSE)
+![Platforms](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-informational)
+![Phone](https://img.shields.io/badge/phone-Android%20%7C%20iPhone-informational)
+![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)
+![Languages](https://img.shields.io/badge/languages-EN%20%7C%20AR%20%7C%20ZH%20%7C%20JA%20%7C%20RU%20%7C%20DE%20%7C%20CH-orange)
+[![Stars](https://img.shields.io/github/stars/universe-coder/pocket-tap?style=social)](https://github.com/universe-coder/pocket-tap/stargazers)
 
 ## Screenshots
 
