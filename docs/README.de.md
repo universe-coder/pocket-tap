@@ -46,18 +46,6 @@ Der Kopplungsschlüssel wird gespeichert, nach einem Neustart des PCs muss nicht
 
 Das PC-Programm schreibt seine Meldungen in der Systemsprache; eine andere wählt `--lang en|ar|zh|ja|ru|de|gsw`.
 
-## Wenn ein VPN läuft
-
-Die Fernbedienung verbindet das Handy direkt mit dem PC im Heimnetz und braucht kein VPN. Ein VPN auf dem PC oder auf dem Handy kann aber stören.
-
-**VPN auf dem PC.** Das Programm wählt die Adresse des Heimnetzes (192.168.x.x und ähnlich), nicht die des VPN, und listet unter dem QR-Code die weiteren Adressen des PCs. Öffnet das Handy die Seite nicht, mit einer anderen Adresse aus der Liste starten: `--ip 192.168.1.42`. Hat das VPN eine Einstellung wie «Allow LAN» oder «Local network sharing», diese einschalten: Ohne sie blockieren manche VPN (mit Kill Switch) eingehende Verbindungen aus dem Heimnetz.
-
-**VPN auf dem Handy.** VPN-Apps schicken oft auch den Verkehr ins Heimnetz durch den Tunnel. In der VPN-App die Ausnahme fürs lokale Netz einschalten:
-- v2rayNG, Hiddify, NekoBox, Clash: «Bypass LAN» in den Routing-Einstellungen
-- Amnezia, Outline und andere mit Split Tunneling: den Browser (oder die Fernbedienungs-App) zu den Ausnahmen hinzufügen
-- WireGuard: im Tunnel «Exclude private IPs» einschalten
-- Android: Ist «Verbindungen ohne VPN blockieren» aktiv, funktioniert die Fernbedienung nicht; Option ausschalten oder die Ausnahmen oben nutzen
-
 ## So funktioniert die YouTube-Steuerung
 
 - **Pause, Nächstes, Vorheriges und Lautstärke** laufen über Medientasten und funktionieren auch, wenn das Browserfenster nicht aktiv ist.

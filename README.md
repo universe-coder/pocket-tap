@@ -49,18 +49,6 @@ The pairing key is saved, so you don't need to scan again after restarting the P
 
 The PC program prints its messages in the system language; choose another one with `--lang en|ar|zh|ja|ru|de|gsw`.
 
-## If a VPN is on
-
-The remote talks directly from the phone to the PC inside your home network and doesn't need the VPN. A VPN on either the PC or the phone can get in the way.
-
-**VPN on the PC.** The program picks the home network address (192.168.x.x and the like) rather than the VPN one, and prints the PC's other addresses under the QR code. If the phone can't open the page, start it with another address from that list: `--ip 192.168.1.42`. If your VPN has a setting like "Allow LAN" or "Local network sharing", turn it on: without it some VPNs (with a kill switch) block incoming connections from the home network.
-
-**VPN on the phone.** VPN apps often send home network traffic into the tunnel too. Turn on the local network exception in the VPN app:
-- v2rayNG, Hiddify, NekoBox, Clash: "Bypass LAN" in the routing settings
-- Amnezia, Outline and others with split tunneling: add the browser (or the remote app) to the exceptions
-- WireGuard: enable "Exclude private IPs" for the tunnel
-- Android: if "Block connections without VPN" is on, the remote can't work; turn it off or use the exceptions above
-
 ## How YouTube control works
 
 - **Play/pause, next, previous and volume** use media keys, so they work even when the browser window isn't focused.
