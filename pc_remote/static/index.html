@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en" class="i18n-loading">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
@@ -15,71 +15,75 @@
 </head>
 <body>
   <header class="topbar">
-    <span id="status" class="status status--off">Нет связи</span>
-    <button id="wake" class="chip" type="button" aria-pressed="false">Экран: авто</button>
+    <span id="status" class="status status--off" data-i18n="status.offline">No connection</span>
+    <select id="lang" class="chip" data-i18n-aria="lang.label" aria-label="Language"></select>
+    <button id="wake" class="chip" type="button" aria-pressed="false" data-i18n="wake.auto">Screen: auto</button>
   </header>
 
   <main>
     <section id="tab-youtube" class="tab tab--active" aria-label="YouTube">
-      <button class="btn btn--hero" data-action="yt.play_pause" aria-label="Пауза / воспроизведение">
+      <button class="btn btn--hero" data-action="yt.play_pause" data-i18n-aria="yt.playPause" aria-label="Pause / Play">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5v14l9-7zM14 5h3v14h-3zM19 5h3v14h-3z"/></svg>
-        <span>Пауза / Play</span>
+        <span data-i18n="yt.playPause">Pause / Play</span>
       </button>
 
-      <div class="row">
-        <button class="btn btn--big" data-action="yt.seek_back_10" data-repeat>−10 с</button>
-        <button class="btn btn--big" data-action="yt.seek_fwd_10" data-repeat>+10 с</button>
+      <!-- Media controls keep their left-to-right order in right-to-left languages too;
+           dir="auto" still lets an Arabic label read right to left inside its button. -->
+      <div class="row" dir="ltr">
+        <button class="btn btn--big" data-action="yt.seek_back_10" dir="auto" data-repeat data-i18n="yt.seekBack">−10 s</button>
+        <button class="btn btn--big" data-action="yt.seek_fwd_10" dir="auto" data-repeat data-i18n="yt.seekFwd">+10 s</button>
+      </div>
+      <div class="row" dir="ltr">
+        <button class="btn" data-action="yt.previous" dir="auto" data-i18n="yt.previous">⏮ Previous</button>
+        <button class="btn" data-action="yt.next" dir="auto" data-i18n="yt.next">Next ⏭</button>
       </div>
       <div class="row">
-        <button class="btn" data-action="yt.previous">⏮ Предыдущее</button>
-        <button class="btn" data-action="yt.next">Следующее ⏭</button>
+        <button class="btn" data-action="sys.volume_down" data-repeat data-i18n="sys.volDown">Vol −</button>
+        <button class="btn" data-action="sys.volume_mute" data-i18n="sys.mute">Mute</button>
+        <button class="btn" data-action="sys.volume_up" data-repeat data-i18n="sys.volUp">Vol +</button>
       </div>
       <div class="row">
-        <button class="btn" data-action="sys.volume_down" data-repeat>Громк. −</button>
-        <button class="btn" data-action="sys.volume_mute">Без звука</button>
-        <button class="btn" data-action="sys.volume_up" data-repeat>Громк. +</button>
+        <button class="btn btn--small" data-action="yt.speed_down" data-i18n="yt.speedDown">Speed −</button>
+        <button class="btn btn--small" data-action="yt.speed_up" data-i18n="yt.speedUp">Speed +</button>
+        <button class="btn btn--small" data-action="yt.captions" data-i18n="yt.captions">Captions</button>
+        <button class="btn btn--small" data-action="yt.fullscreen" data-i18n="yt.fullscreen">Full screen</button>
       </div>
-      <div class="row">
-        <button class="btn btn--small" data-action="yt.speed_down">Скорость −</button>
-        <button class="btn btn--small" data-action="yt.speed_up">Скорость +</button>
-        <button class="btn btn--small" data-action="yt.captions">Субтитры</button>
-        <button class="btn btn--small" data-action="yt.fullscreen">Во весь экран</button>
-      </div>
-      <p class="hint">Пауза, следующее и предыдущее работают всегда. Перемотка, скорость и полный экран нужны вкладке YouTube в фокусе: если не срабатывают, кликните по видео через «Тачпад».</p>
+      <p class="hint" data-i18n="yt.hint">Pause, next and previous always work. Seeking, speed and full screen need the YouTube tab in focus: if they do nothing, click the video from the Touchpad tab.</p>
     </section>
 
-    <section id="tab-touchpad" class="tab" aria-label="Тачпад">
-      <div id="pad" class="pad" role="application" aria-label="Тачпад: водите пальцем, касание — клик, двумя пальцами — прокрутка">
-        <span>Водите пальцем — курсор<br>Касание — клик, два пальца — прокрутка</span>
+    <section id="tab-touchpad" class="tab" data-i18n-aria="tab.touchpad" aria-label="Touchpad">
+      <div id="pad" class="pad" role="application" data-i18n-aria="pad.label" aria-label="Touchpad: drag to move the cursor, tap to click, two fingers to scroll">
+        <span data-i18n="pad.text">Drag a finger to move the cursor
+Tap to click, two fingers to scroll</span>
       </div>
       <div class="row">
-        <button class="btn" data-click="left">Левая</button>
-        <button class="btn" data-click="right">Правая</button>
+        <button class="btn" data-click="left" data-i18n="pad.left">Left click</button>
+        <button class="btn" data-click="right" data-i18n="pad.right">Right click</button>
       </div>
       <div class="row">
-        <button class="btn btn--small" data-action="browser.back">← Назад</button>
-        <button class="btn btn--small" data-action="browser.refresh">Обновить</button>
-        <button class="btn btn--small" data-action="browser.forward">Вперёд →</button>
+        <button class="btn btn--small" data-action="browser.back" data-i18n="browser.back">← Back</button>
+        <button class="btn btn--small" data-action="browser.refresh" data-i18n="browser.refresh">Refresh</button>
+        <button class="btn btn--small" data-action="browser.forward" data-i18n="browser.forward">Forward →</button>
       </div>
-      <label class="sens">Чувствительность <input id="sens" type="range" min="1" max="5" step="0.5" value="2.5"></label>
+      <label class="sens"><span data-i18n="pad.sensitivity">Sensitivity</span> <input id="sens" type="range" min="1" max="5" step="0.5" value="2.5"></label>
     </section>
 
-    <section id="tab-keyboard" class="tab" aria-label="Клавиатура">
+    <section id="tab-keyboard" class="tab" data-i18n-aria="tab.keyboard" aria-label="Keyboard">
       <form id="text-form" class="text-form">
-        <input id="text" type="text" autocomplete="off" autocapitalize="off" placeholder="Текст для ввода на ПК" enterkeyhint="send">
-        <button class="btn" type="submit">Ввести</button>
+        <input id="text" type="text" autocomplete="off" autocapitalize="off" data-i18n-placeholder="kbd.placeholder" placeholder="Text to type on the PC" enterkeyhint="send">
+        <button class="btn" type="submit" data-i18n="kbd.send">Type</button>
       </form>
-      <div class="row">
+      <div class="row" dir="ltr">
         <button class="btn" data-keys="enter">Enter</button>
         <button class="btn" data-keys="backspace" data-repeat>⌫</button>
         <button class="btn" data-keys="esc">Esc</button>
       </div>
-      <div class="row">
+      <div class="row" dir="ltr">
         <button class="btn" data-keys="tab">Tab</button>
-        <button class="btn" data-keys="space">Пробел</button>
+        <button class="btn" data-keys="space" data-i18n="kbd.space">Space</button>
         <button class="btn" data-keys="up" data-repeat>↑</button>
       </div>
-      <div class="row">
+      <div class="row" dir="ltr">
         <button class="btn" data-keys="left" data-repeat>←</button>
         <button class="btn" data-keys="down" data-repeat>↓</button>
         <button class="btn" data-keys="right" data-repeat>→</button>
@@ -88,16 +92,17 @@
   </main>
 
   <nav class="tabbar">
-    <button class="tabbar__item tabbar__item--active" data-tab="youtube">YouTube</button>
-    <button class="tabbar__item" data-tab="touchpad">Тачпад</button>
-    <button class="tabbar__item" data-tab="keyboard">Клавиатура</button>
+    <button class="tabbar__item tabbar__item--active" data-tab="youtube" data-i18n="tab.youtube">YouTube</button>
+    <button class="tabbar__item" data-tab="touchpad" data-i18n="tab.touchpad">Touchpad</button>
+    <button class="tabbar__item" data-tab="keyboard" data-i18n="tab.keyboard">Keyboard</button>
   </nav>
 
   <div id="pair" class="pair" hidden>
-    <h1>Нужно подключение</h1>
-    <p>Запустите программу на ПК и отсканируйте QR-код камерой телефона.</p>
+    <h1 data-i18n="pair.title">Pairing needed</h1>
+    <p data-i18n="pair.text">Start the program on your PC and scan its QR code with the phone camera.</p>
   </div>
 
+  <script src="/static/i18n.js"></script>
   <script src="/static/app.js"></script>
 </body>
 </html>

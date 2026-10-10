@@ -1,7 +1,8 @@
 {
   "name": "PC Remote",
   "short_name": "PC Remote",
-  "description": "Пульт управления ПК с телефона",
+  "description": "Use your phone as a remote control for your PC",
+  "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

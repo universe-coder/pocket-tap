@@ -26,6 +26,9 @@ html, body {
   overscroll-behavior: none;
 }
 
+/* Hidden until the translations are applied, so the page does not flash English. */
+.i18n-loading body { visibility: hidden; }
+
 body {
   display: flex;
   flex-direction: column;
@@ -64,6 +67,12 @@ body {
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 6px 12px;
+}
+select.chip {
+  max-width: 34vw;
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: center;
 }
 .chip[aria-pressed="true"] { color: var(--text); border-color: var(--ok); }
 .chip:disabled { opacity: 0.6; }
@@ -127,6 +136,7 @@ main {
   border-radius: var(--radius);
   touch-action: none;
 }
+.pad span { white-space: pre-line; }
 
 .sens { display: flex; align-items: center; gap: var(--gap); font-size: 14px; color: var(--muted); }
 .sens input { flex: 1; accent-color: var(--accent); }

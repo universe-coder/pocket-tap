@@ -23,8 +23,11 @@ let ws = null;
 let retryDelay = 500;
 let everOpened = false;
 
-function setStatus(text, ok) {
-  statusEl.textContent = text;
+let statusKey = "status.offline";
+
+function setStatus(key, ok) {
+  statusKey = key;
+  statusEl.textContent = i18n.t(key);
   statusEl.classList.toggle("status--on", ok);
   statusEl.classList.toggle("status--off", !ok);
 }
@@ -32,12 +35,12 @@ function setStatus(text, ok) {
 function connect() {
   const proto = location.protocol === "https:" ? "wss:" : "ws:";
   ws = new WebSocket(`${proto}//${location.host}/ws?t=${encodeURIComponent(token)}`);
-  setStatus("Подключение…", false);
+  setStatus("status.connecting", false);
 
   ws.onopen = () => {
     retryDelay = 500;
     everOpened = true;
-    setStatus("ПК подключён", true);
+    setStatus("status.connected", true);
   };
   ws.onmessage = (event) => {
     const msg = JSON.parse(event.data);
@@ -45,7 +48,7 @@ function connect() {
   };
   ws.onclose = async () => {
     ws = null;
-    setStatus("Нет связи, переподключаюсь…", false);
+    setStatus("status.reconnecting", false);
     // The browser hides why a WebSocket failed; ask the PC whether the token
     // is still valid so a stale pairing shows the pairing screen instead of looping.
     if (!everOpened && await tokenRejected()) {
@@ -68,7 +71,7 @@ async function tokenRejected() {
 
 function showPairing() {
   document.getElementById("pair").hidden = false;
-  setStatus("Нет ключа", false);
+  setStatus("status.noKey", false);
 }
 
 function send(msg) {
@@ -248,11 +251,11 @@ async function requestWakeLock() {
 
 function updateWakeBtn() {
   if (!("wakeLock" in navigator)) {
-    wakeBtn.textContent = "Экран: как в системе";
+    wakeBtn.textContent = i18n.t("wake.system");
     wakeBtn.disabled = true;
     return;
   }
-  wakeBtn.textContent = wakeLock ? "Экран не гаснет" : "Экран: авто";
+  wakeBtn.textContent = i18n.t(wakeLock ? "wake.on" : "wake.auto");
   wakeBtn.setAttribute("aria-pressed", String(Boolean(wakeLock)));
 }
 
@@ -266,6 +269,12 @@ wakeBtn.addEventListener("click", async () => {
 document.addEventListener("pointerdown", () => requestWakeLock(), { once: true });
 
 // ---- Start ---------------------------------------------------------------
+// Dynamic labels are set from code, so redraw them when the language changes.
+i18n.onChange(() => {
+  statusEl.textContent = i18n.t(statusKey);
+  updateWakeBtn();
+});
+
 if (token) {
   connect();
   updateWakeBtn();

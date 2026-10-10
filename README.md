@@ -1,70 +1,97 @@
-# PC Remote: телефон как пульт для компьютера
+# PC Remote
 
-Телефон становится пультом для ПК по домашнему Wi-Fi. Первый сценарий: смотреть YouTube на компьютере, стоя на беговой дорожке, и управлять видео с телефона.
+**English** · [العربية](docs/README.ar.md) · [中文](docs/README.zh.md) · [日本語](docs/README.ja.md) · [Русский](docs/README.ru.md) · [Deutsch / Schweiz](docs/README.de.md)
 
-Состоит из двух частей:
+Turn your phone into a remote control for your PC over home Wi-Fi. Built for watching YouTube on the computer while on a treadmill, and controlling the video from the phone.
 
-- **Программа для ПК** (`pc_remote`, Python). Нажимает клавиши и двигает мышь по командам с телефона. Windows основная платформа, также работает на macOS и Linux (X11).
-- **Приложение для телефона**. Веб-приложение (PWA), которое ПК сам раздаёт по Wi-Fi. Ничего не нужно ставить из магазина: сканируете QR-код и при желании добавляете на главный экран, после чего оно открывается как обычное приложение. Работает на Android и iPhone.
+[![Download for Windows](https://img.shields.io/badge/Download-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/PCRemote-windows.exe)
+[![Download ZIP for macOS and Linux](https://img.shields.io/badge/Download-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip)
 
-## Что умеет
+[![tests](https://github.com/universe-coder/mobile-pc-contoller/actions/workflows/tests.yml/badge.svg)](https://github.com/universe-coder/mobile-pc-contoller/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**YouTube**: большая кнопка пауза/воспроизведение, перемотка ±10 секунд (удерживайте для быстрой перемотки), следующее и предыдущее видео, громкость системы, скорость, субтитры, полный экран.
+Two parts:
 
-**Тачпад**: курсор пальцем, касание это клик, касание двумя пальцами это правый клик, прокрутка двумя пальцами, кнопки «Назад», «Вперёд», «Обновить» для браузера.
+- **The PC program** (`pc_remote`, Python) presses keys and moves the mouse on commands from the phone. Windows is the main platform; macOS and Linux (X11) work too.
+- **The phone app** is a web app (PWA) that the PC serves over Wi-Fi. Nothing to install from an app store: scan a QR code and optionally add it to the home screen, where it opens like a regular app. Works on Android and iPhone.
 
-**Клавиатура**: ввод текста на ПК (например, поиск на YouTube), Enter, Esc, стрелки и другие клавиши.
+The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian, German and Swiss German. It follows the phone's language, and you can switch it at the top of the screen.
 
-## Запуск
+## Features
 
-1. Установите [Python 3.9+](https://www.python.org/downloads/). На Windows при установке отметьте «Add python.exe to PATH».
-2. Скачайте репозиторий и запустите:
-   - Windows: двойной клик по `start-windows.bat`
+**YouTube**: a big play/pause button, seek ±10 seconds (hold to keep seeking), next and previous video, system volume, playback speed, captions, full screen.
+
+**Touchpad**: move the cursor with a finger, tap to click, two-finger tap to right-click, two-finger scroll, and Back, Forward and Refresh buttons for the browser.
+
+**Keyboard**: type text on the PC (for example, a YouTube search), Enter, Esc, arrows and other keys.
+
+## Getting started
+
+### Windows: one file, no Python needed
+
+1. Download [PCRemote-windows.exe](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/PCRemote-windows.exe) and run it.
+   Windows may warn about an unknown publisher because the program is not code-signed: click **More info**, then **Run anyway**.
+2. When Windows asks about network access, allow it for **private networks**.
+3. A QR code appears in the window. Scan it with your phone camera; the phone must be on the same Wi-Fi.
+4. To open the remote with one tap, add it to the home screen from the phone browser's menu.
+
+### Any system, with Python
+
+1. Install [Python 3.9+](https://www.python.org/downloads/). On Windows, tick "Add python.exe to PATH" during setup.
+2. [Download the ZIP](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip), unpack it and run:
+   - Windows: double-click `start-windows.bat`
    - macOS / Linux: `./start.sh`
 
-   Первый запуск ставит зависимости, это займёт минуту.
-3. Windows спросит про доступ к сети: разрешите для **частных сетей**.
-4. В окне появится QR-код. Отсканируйте его камерой телефона, телефон должен быть в той же Wi-Fi сети.
-5. Чтобы открывать пульт одним касанием: в браузере телефона меню, затем «Добавить на главный экран».
+   The first run installs dependencies, which takes about a minute. On macOS, allow the terminal under System Settings → Privacy & Security → Accessibility so it can press keys.
+3. Continue from step 2 above.
 
-Ключ сохраняется, так что после перезапуска ПК повторно сканировать не нужно. Новый ключ (старые телефоны отключатся): `start-windows.bat --reset-token`.
+The pairing key is saved, so you don't need to scan again after restarting the PC. To issue a new key (old phones get disconnected): `--reset-token`, for example `start-windows.bat --reset-token`.
 
-## Если включён VPN
+The PC program prints its messages in the system language; choose another one with `--lang en|ar|zh|ja|ru|de|gsw`.
 
-Пульт ходит напрямую из телефона в ПК внутри домашней сети, VPN ему не нужен. Мешать может VPN и на ПК, и на телефоне.
+## If a VPN is on
 
-**VPN на ПК.** Программа сама выбирает адрес домашней сети (192.168.x.x и т.п.), а не адрес VPN, и под QR-кодом печатает остальные адреса ПК. Если телефон не открывает страницу, запустите с другим адресом из списка: `start-windows.bat --ip 192.168.1.42`. Если в VPN есть настройка вроде «Разрешить локальную сеть» / «Allow LAN» / «Local network sharing», включите её: без неё некоторые VPN (с kill switch) блокируют входящие подключения из домашней сети.
+The remote talks directly from the phone to the PC inside your home network and doesn't need the VPN. A VPN on either the PC or the phone can get in the way.
 
-**VPN на телефоне.** VPN часто отправляет в туннель и запросы к домашней сети. Включите в VPN-приложении исключение локальной сети:
-- v2rayNG, Hiddify, NekoBox, Clash: «Bypass LAN» / «Обход локальной сети» в настройках маршрутизации
-- Amnezia, Outline и другие со split tunneling: добавьте браузер (или приложение пульта) в исключения
-- WireGuard: в туннеле включите «Исключить частные IP» (Exclude private IPs)
-- Android: если в настройках VPN включено «Блокировать подключения без VPN», пульт работать не будет, отключите эту опцию или используйте исключения выше
+**VPN on the PC.** The program picks the home network address (192.168.x.x and the like) rather than the VPN one, and prints the PC's other addresses under the QR code. If the phone can't open the page, start it with another address from that list: `--ip 192.168.1.42`. If your VPN has a setting like "Allow LAN" or "Local network sharing", turn it on: without it some VPNs (with a kill switch) block incoming connections from the home network.
 
-## Как управлять YouTube
+**VPN on the phone.** VPN apps often send home network traffic into the tunnel too. Turn on the local network exception in the VPN app:
+- v2rayNG, Hiddify, NekoBox, Clash: "Bypass LAN" in the routing settings
+- Amnezia, Outline and others with split tunneling: add the browser (or the remote app) to the exceptions
+- WireGuard: enable "Exclude private IPs" for the tunnel
+- Android: if "Block connections without VPN" is on, the remote can't work; turn it off or use the exceptions above
 
-- **Пауза, следующее, предыдущее, громкость** работают через мультимедийные клавиши, поэтому срабатывают, даже если окно браузера не активно.
-- **Перемотка, скорость, субтитры, полный экран** это горячие клавиши YouTube, им нужна активная вкладка с видео. Если не срабатывают, откройте «Тачпад» и кликните по видео.
+## How YouTube control works
 
-## Экран телефона
+- **Play/pause, next, previous and volume** use media keys, so they work even when the browser window isn't focused.
+- **Seeking, speed, captions and full screen** are YouTube hotkeys and need the video tab focused. If they do nothing, open the Touchpad tab and click the video.
 
-Чтобы экран не гас на дорожке, приложение пробует включить режим «экран не гаснет» (кнопка вверху). Браузеры разрешают это только по HTTPS, а пульт работает по обычному HTTP в домашней сети, поэтому на большинстве телефонов кнопка будет показывать «как в системе». Пока что увеличьте время отключения экрана в настройках телефона.
+## Phone screen
 
-## Безопасность
+To keep the screen on while you're on the treadmill, the app tries to enable "keep screen on" (the button at the top). Browsers only allow that over HTTPS, while the remote uses plain HTTP inside the home network, so on most phones the button shows "system setting". Until then, raise the screen timeout in the phone's settings.
 
-Команды принимаются только от телефона с ключом из QR-кода. Ключ хранится в `%APPDATA%\pc-remote\token` (Windows) или `~/.pc-remote/token`. Трафик не шифруется, используйте пульт только в домашней сети.
+## Security
 
-## Для разработчиков
+Commands are accepted only from a phone with the key from the QR code. The key is stored in `%APPDATA%\pc-remote\token` (Windows) or `~/.pc-remote/token`. Traffic is not encrypted: use the remote only on your home network. See [SECURITY.md](SECURITY.md) to report a vulnerability.
+
+## For developers
 
 ```sh
 python -m pip install -r requirements.txt -r requirements-dev.txt
 python -m pytest
-python -m pc_remote --dry-run   # команды пишутся в лог, клавиши не нажимаются
+python -m pc_remote --dry-run   # log commands instead of pressing keys
 ```
 
-Структура:
+Layout:
 
-- `pc_remote/actions.py`: какие клавиши нажимает каждая кнопка
-- `pc_remote/app.py`: HTTP и WebSocket сервер, проверка сообщений
-- `pc_remote/backend.py`: нажатия через pynput и тестовый режим
-- `pc_remote/static/`: приложение для телефона
+- `pc_remote/actions.py`: which keys each button presses
+- `pc_remote/app.py`: HTTP and WebSocket server, message validation
+- `pc_remote/backend.py`: key presses through pynput, and the dry-run mode
+- `pc_remote/i18n.py`: the PC program's messages in every language
+- `pc_remote/static/`: the phone app; translations live in `static/locales/`
+
+Releases: pushing a tag such as `v1.0.0` builds `PCRemote-windows.exe` and publishes it on the [Releases](https://github.com/universe-coder/mobile-pc-contoller/releases) page. See [CONTRIBUTING.md](CONTRIBUTING.md), including how to add a language.
+
+## License
+
+[MIT](LICENSE)
