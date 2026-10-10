@@ -1,0 +1,22 @@
+name: delete-release
+# Run by hand to delete releases together with their tags.
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: "Space-separated release tags to delete, e.g. v1.0.0 v1.0.1"
+        required: true
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          TAGS: ${{ inputs.tags }}
+        run: |
+          for tag in $TAGS; do
+            gh release delete "$tag" --cleanup-tag --yes --repo "$GITHUB_REPOSITORY"
+          done
