@@ -90,7 +90,7 @@ Layout:
 - `pc_remote/i18n.py`: the PC program's messages in every language
 - `pc_remote/static/`: the phone app; translations live in `static/locales/`
 
-Releases: pushing a tag such as `v1.0.0` builds `TapRemote-windows.exe` and publishes it on the [Releases](https://github.com/universe-coder/pocket-tap/releases) page. See [CONTRIBUTING.md](CONTRIBUTING.md), including how to add a language.
+Releases: pushing a tag such as `v1.0.0` (or running the release workflow with a version) builds `TapRemote-windows.exe` and publishes it on the [Releases](https://github.com/universe-coder/pocket-tap/releases) page. See [CONTRIBUTING.md](CONTRIBUTING.md), including how to add a language.
 
 ## License
 
