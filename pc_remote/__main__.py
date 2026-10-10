@@ -1,6 +1,7 @@
 """Entry point: `python -m pc_remote`."""
 
 import argparse
+import asyncio
 import logging
 import os
 import secrets
@@ -31,6 +32,17 @@ def load_token(reset=False):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(token)
     return token
+
+
+def make_loop():
+    """Event loop for the server.
+
+    Windows defaults to the Proactor loop, which closes the listening socket
+    for good when an accept fails (e.g. WinError 64 when the phone's VPN
+    switches on mid-connection), so the server silently stops taking
+    connections. The selector loop logs such an error and keeps listening.
+    """
+    return asyncio.SelectorEventLoop()
 
 
 def print_qr(url):
@@ -77,7 +89,7 @@ def main(argv=None):
             print(f"  {c}  {name}")
         print()
 
-    web.run_app(create_app(backend, token), host=args.host, port=args.port, print=None)
+    web.run_app(create_app(backend, token), host=args.host, port=args.port, print=None, loop=make_loop())
 
 
 if __name__ == "__main__":

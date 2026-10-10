@@ -116,3 +116,14 @@ def test_candidate_ips_home_lan_on_10_network():
     # Some routers hand out 10.x; a VPN on 198.18.x must still lose to it.
     adapters = [("Clash", "198.18.0.1"), ("Wi-Fi", "10.0.0.15")]
     assert candidate_ips(adapters)[0][0] == "10.0.0.15"
+
+
+def test_server_loop_is_selector_based():
+    # The Windows Proactor loop stops accepting after one failed accept.
+    import asyncio
+    from pc_remote.__main__ import make_loop
+    loop = make_loop()
+    try:
+        assert isinstance(loop, asyncio.SelectorEventLoop)
+    finally:
+        loop.close()
