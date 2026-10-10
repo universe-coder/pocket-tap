@@ -1,6 +1,6 @@
 {
-  "name": "PC Remote",
-  "short_name": "PC Remote",
+  "name": "TapRemote",
+  "short_name": "TapRemote",
   "description": "Use your phone as a remote control for your PC",
   "lang": "en",
   "start_url": "/",

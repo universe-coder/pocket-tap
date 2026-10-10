@@ -72,7 +72,7 @@ def say(lang, key, **kwargs):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(prog="pc_remote", description="Phone remote control for this PC")
+    parser = argparse.ArgumentParser(prog="tapremote", description="TapRemote: phone remote control for this PC")
     parser.add_argument("--host", default="0.0.0.0", help="address to listen on (default: all)")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
     parser.add_argument("--ip", help="PC address to put in the QR code (if the guessed one does not work)")
