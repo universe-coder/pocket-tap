@@ -21,6 +21,7 @@ jobs:
       - name: Build PCRemote-windows.exe
         run: >
           pyinstaller --onefile --name PCRemote-windows
+          --paths .
           --add-data "pc_remote/static;pc_remote/static"
           --hidden-import pynput.keyboard._win32
           --hidden-import pynput.mouse._win32
