@@ -1,10 +1,10 @@
-# TapRemote
+# PocketTap
 
 [English](../README.md) · [العربية](README.ar.md) · [中文](README.zh.md) · **日本語** · [Русский](README.ru.md) · [Deutsch / Schweiz](README.de.md)
 
 自宅の Wi-Fi で、スマートフォンを PC のリモコンにします。最初の用途：ランニングマシンの上で PC の YouTube を見ながら、スマートフォンで動画を操作すること。
 
-[![Windows 版をダウンロード](https://img.shields.io/badge/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe)
+[![Windows 版をダウンロード](https://img.shields.io/badge/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
 [![macOS / Linux 版 ZIP をダウンロード](https://img.shields.io/badge/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
 2 つの部分からなります：
@@ -26,7 +26,7 @@
 
 ### Windows：ファイル 1 つ、Python 不要
 
-1. [TapRemote-windows.exe](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe) をダウンロードして実行します。
+1. [PocketTap-windows.exe](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe) をダウンロードして実行します。
    プログラムにコード署名がないため、Windows が「不明な発行元」と警告することがあります：**詳細情報**をクリックし、**実行**を選んでください。
 2. Windows がネットワークへのアクセスを確認したら、**プライベート ネットワーク**で許可します。
 3. ウィンドウに QR コードが表示されます。スマートフォンのカメラで読み取ってください。スマートフォンは同じ Wi-Fi に接続している必要があります。
@@ -87,7 +87,7 @@ python -m pc_remote --dry-run   # キーを押さずに指示をログに出力
 - `pc_remote/i18n.py`：PC 用プログラムの各言語のメッセージ
 - `pc_remote/static/`：スマートフォン用アプリ。翻訳は `static/locales/` にあります
 
-リリース：`v1.0.0` のようなタグを push すると `TapRemote-windows.exe` がビルドされ、[Releases](https://github.com/universe-coder/pocket-tap/releases) ページで公開されます。言語の追加方法は [CONTRIBUTING.md](../CONTRIBUTING.md) を参照してください。
+リリース：`v1.0.0` のようなタグを push すると `PocketTap-windows.exe` がビルドされ、[Releases](https://github.com/universe-coder/pocket-tap/releases) ページで公開されます。言語の追加方法は [CONTRIBUTING.md](../CONTRIBUTING.md) を参照してください。
 
 ## ライセンス
 

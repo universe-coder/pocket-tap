@@ -23,9 +23,9 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install -r requirements.txt -r requirements-dev.txt pyinstaller
       - run: python -m pytest -q
-      - name: Build TapRemote-windows.exe
+      - name: Build PocketTap-windows.exe
         run: >
-          pyinstaller --onefile --name TapRemote-windows
+          pyinstaller --onefile --name PocketTap-windows
           --paths .
           --add-data "pc_remote/static;pc_remote/static"
           --hidden-import pynput.keyboard._win32
@@ -34,18 +34,18 @@ jobs:
       - name: Smoke test
         shell: pwsh
         run: |
-          $out = dist\TapRemote-windows.exe --version
+          $out = dist\PocketTap-windows.exe --version
           if ($LASTEXITCODE -ne 0) { exit 1 }
           $out
       - uses: actions/upload-artifact@v4
         with:
-          name: TapRemote-windows
-          path: dist/TapRemote-windows.exe
+          name: PocketTap-windows
+          path: dist/PocketTap-windows.exe
       - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v') || inputs.version != ''
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.version || github.ref_name }}
           target_commitish: ${{ github.sha }}
-          files: dist/TapRemote-windows.exe
+          files: dist/PocketTap-windows.exe
           generate_release_notes: true
