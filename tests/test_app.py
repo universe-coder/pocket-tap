@@ -92,3 +92,27 @@ async def test_websocket_drives_backend(client, backend):
         await ws.send_str("not json")
         assert (await ws.receive_json())["type"] == "error"
     assert backend.calls == [("combo", ("l",))]
+
+
+def test_candidate_ips_prefer_home_network_over_vpn():
+    from pc_remote.net import candidate_ips
+    adapters = [
+        ("lo", "127.0.0.1"),
+        ("AmneziaVPN", "10.8.1.2"),
+        ("wintun", "198.18.0.1"),
+        ("Tailscale", "100.101.102.103"),
+        ("Ethernet 2", "169.254.10.10"),
+        ("Беспроводная сеть", "192.168.1.42"),
+        ("vEthernet (WSL)", "172.25.160.1"),
+    ]
+    ips = [ip for ip, _ in candidate_ips(adapters)]
+    assert ips[0] == "192.168.1.42"
+    # Loopback and link-local are never offered; the rest stay as fallbacks.
+    assert sorted(ips[1:]) == sorted(["10.8.1.2", "198.18.0.1", "100.101.102.103", "172.25.160.1"])
+
+
+def test_candidate_ips_home_lan_on_10_network():
+    from pc_remote.net import candidate_ips
+    # Some routers hand out 10.x; a VPN on 198.18.x must still lose to it.
+    adapters = [("Clash", "198.18.0.1"), ("Wi-Fi", "10.0.0.15")]
+    assert candidate_ips(adapters)[0][0] == "10.0.0.15"

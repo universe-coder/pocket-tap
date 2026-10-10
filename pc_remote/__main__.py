@@ -4,13 +4,13 @@ import argparse
 import logging
 import os
 import secrets
-import socket
 import sys
 from pathlib import Path
 
 from aiohttp import web
 
 from .app import create_app
+from .net import candidate_ips
 
 DEFAULT_PORT = 8765
 
@@ -33,16 +33,6 @@ def load_token(reset=False):
     return token
 
 
-def lan_ip():
-    # Connecting a UDP socket sends nothing; it only picks the outgoing interface.
-    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-        try:
-            s.connect(("192.168.0.1", 1))
-            return s.getsockname()[0]
-        except OSError:
-            return "127.0.0.1"
-
-
 def print_qr(url):
     try:
         import qrcode
@@ -57,6 +47,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(prog="pc_remote", description="Phone remote control for this PC")
     parser.add_argument("--host", default="0.0.0.0", help="address to listen on (default: all)")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
+    parser.add_argument("--ip", help="PC address to put in the QR code (if the guessed one does not work)")
     parser.add_argument("--reset-token", action="store_true", help="issue a new pairing token")
     parser.add_argument("--dry-run", action="store_true", help="log commands instead of pressing keys")
     args = parser.parse_args(argv)
@@ -71,11 +62,20 @@ def main(argv=None):
         backend = PynputBackend()
 
     token = load_token(reset=args.reset_token)
-    url = f"http://{lan_ip()}:{args.port}/?t={token}"
+    candidates = candidate_ips()
+    ip = args.ip or (candidates[0][0] if candidates else "127.0.0.1")
+    url = f"http://{ip}:{args.port}/?t={token}"
     print("\nОтсканируйте QR-код телефоном (телефон и ПК в одной Wi-Fi сети)")
     print("Scan the QR code with your phone (same Wi-Fi as this PC)\n")
     print_qr(url)
     print(f"\n{url}\n")
+    others = [(c, name) for c, name in candidates if c != ip]
+    if others:
+        print("Не открывается? Попробуйте другой адрес ПК, например: start-windows.bat --ip АДРЕС")
+        print("Not loading? Try another PC address, e.g.: start-windows.bat --ip ADDRESS")
+        for c, name in others:
+            print(f"  {c}  {name}")
+        print()
 
     web.run_app(create_app(backend, token), host=args.host, port=args.port, print=None)
 
