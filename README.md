@@ -4,10 +4,10 @@
 
 Turn your phone into a remote control for your PC over home Wi-Fi. Built for watching YouTube on the computer while on a treadmill, and controlling the video from the phone.
 
-[![Download for Windows](https://img.shields.io/badge/Download-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe)
-[![Download ZIP for macOS and Linux](https://img.shields.io/badge/Download-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip)
+[![Download for Windows](https://img.shields.io/badge/Download-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe)
+[![Download ZIP for macOS and Linux](https://img.shields.io/badge/Download-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
-[![tests](https://github.com/universe-coder/mobile-pc-contoller/actions/workflows/tests.yml/badge.svg)](https://github.com/universe-coder/mobile-pc-contoller/actions/workflows/tests.yml)
+[![tests](https://github.com/universe-coder/pocket-tap/actions/workflows/tests.yml/badge.svg)](https://github.com/universe-coder/pocket-tap/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Two parts:
@@ -29,7 +29,7 @@ The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian
 
 ### Windows: one file, no Python needed
 
-1. Download [TapRemote-windows.exe](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe) and run it.
+1. Download [TapRemote-windows.exe](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe) and run it.
    Windows may warn about an unknown publisher because the program is not code-signed: click **More info**, then **Run anyway**.
 2. When Windows asks about network access, allow it for **private networks**.
 3. A QR code appears in the window. Scan it with your phone camera; the phone must be on the same Wi-Fi.
@@ -38,7 +38,7 @@ The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian
 ### Any system, with Python
 
 1. Install [Python 3.9+](https://www.python.org/downloads/). On Windows, tick "Add python.exe to PATH" during setup.
-2. [Download the ZIP](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip), unpack it and run:
+2. [Download the ZIP](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip), unpack it and run:
    - Windows: double-click `start-windows.bat`
    - macOS / Linux: `./start.sh`
 
@@ -90,7 +90,7 @@ Layout:
 - `pc_remote/i18n.py`: the PC program's messages in every language
 - `pc_remote/static/`: the phone app; translations live in `static/locales/`
 
-Releases: pushing a tag such as `v1.0.0` builds `TapRemote-windows.exe` and publishes it on the [Releases](https://github.com/universe-coder/mobile-pc-contoller/releases) page. See [CONTRIBUTING.md](CONTRIBUTING.md), including how to add a language.
+Releases: pushing a tag such as `v1.0.0` builds `TapRemote-windows.exe` and publishes it on the [Releases](https://github.com/universe-coder/pocket-tap/releases) page. See [CONTRIBUTING.md](CONTRIBUTING.md), including how to add a language.
 
 ## License
 

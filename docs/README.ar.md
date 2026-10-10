@@ -6,8 +6,8 @@
 
 حوِّل هاتفك إلى جهاز تحكم عن بُعد لجهاز الكمبيوتر عبر شبكة Wi-Fi المنزلية. الاستخدام الأول: مشاهدة YouTube على الكمبيوتر أثناء المشي على جهاز المشي، والتحكم في الفيديو من الهاتف.
 
-[![تنزيل لنظام Windows](https://img.shields.io/badge/%D8%AA%D9%86%D8%B2%D9%8A%D9%84-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe)
-[![تنزيل ZIP لنظامي macOS وLinux](https://img.shields.io/badge/%D8%AA%D9%86%D8%B2%D9%8A%D9%84-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip)
+[![تنزيل لنظام Windows](https://img.shields.io/badge/%D8%AA%D9%86%D8%B2%D9%8A%D9%84-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe)
+[![تنزيل ZIP لنظامي macOS وLinux](https://img.shields.io/badge/%D8%AA%D9%86%D8%B2%D9%8A%D9%84-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
 يتكوّن من جزأين:
 
@@ -28,7 +28,7 @@
 
 ### Windows: ملف واحد دون الحاجة إلى Python
 
-1. نزِّل [TapRemote-windows.exe](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe) وشغّله.
+1. نزِّل [TapRemote-windows.exe](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe) وشغّله.
    قد يحذّر Windows من ناشر غير معروف لأن البرنامج غير موقّع رقميًا: انقر **مزيد من المعلومات** ثم **تشغيل على أي حال**.
 2. عندما يسأل Windows عن الوصول إلى الشبكة، اسمح به **للشبكات الخاصة**.
 3. سيظهر رمز QR في النافذة. امسحه بكاميرا الهاتف، ويجب أن يكون الهاتف على شبكة Wi-Fi نفسها.
@@ -37,7 +37,7 @@
 ### أي نظام، باستخدام Python
 
 1. ثبّت [Python 3.9+](https://www.python.org/downloads/). على Windows فعّل خيار «Add python.exe to PATH» أثناء التثبيت.
-2. [نزِّل ملف ZIP](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip) وفُكّ ضغطه وشغّل:
+2. [نزِّل ملف ZIP](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip) وفُكّ ضغطه وشغّل:
    - Windows: انقر نقرًا مزدوجًا على `start-windows.bat`
    - macOS / Linux: `./start.sh`
 
@@ -93,7 +93,7 @@ python -m pc_remote --dry-run   # log commands instead of pressing keys
 - `pc_remote/i18n.py`: رسائل برنامج الكمبيوتر بجميع اللغات
 - `pc_remote/static/`: تطبيق الهاتف، والترجمات في `static/locales/`
 
-الإصدارات: دفع وسم مثل `v1.0.0` يبني `TapRemote-windows.exe` وينشره في صفحة [Releases](https://github.com/universe-coder/mobile-pc-contoller/releases). لإضافة لغة جديدة راجع [CONTRIBUTING.md](../CONTRIBUTING.md).
+الإصدارات: دفع وسم مثل `v1.0.0` يبني `TapRemote-windows.exe` وينشره في صفحة [Releases](https://github.com/universe-coder/pocket-tap/releases). لإضافة لغة جديدة راجع [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## الترخيص
 

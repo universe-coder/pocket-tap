@@ -4,8 +4,8 @@
 
 Das Handy wird zur Fernbedienung für den PC, über das WLAN zu Hause. Gedacht zum Beispiel, um auf dem Laufband YouTube am Computer zu schauen und das Video vom Handy aus zu steuern.
 
-[![Für Windows herunterladen](https://img.shields.io/badge/Herunterladen-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe)
-[![ZIP für macOS und Linux herunterladen](https://img.shields.io/badge/Herunterladen-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip)
+[![Für Windows herunterladen](https://img.shields.io/badge/Herunterladen-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe)
+[![ZIP für macOS und Linux herunterladen](https://img.shields.io/badge/Herunterladen-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
 Zwei Teile:
 
@@ -26,7 +26,7 @@ Die Handy-App spricht Englisch, Arabisch (von rechts nach links), Chinesisch, Ja
 
 ### Windows: eine Datei, ohne Python
 
-1. [TapRemote-windows.exe](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe) herunterladen und starten.
+1. [TapRemote-windows.exe](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe) herunterladen und starten.
    Windows warnt eventuell vor einem unbekannten Herausgeber, weil das Programm nicht signiert ist: **Weitere Informationen** und dann **Trotzdem ausführen** wählen.
 2. Fragt Windows nach Netzwerkzugriff, für **private Netzwerke** erlauben.
 3. Im Fenster erscheint ein QR-Code. Mit der Handykamera scannen; das Handy muss im selben WLAN sein.
@@ -35,7 +35,7 @@ Die Handy-App spricht Englisch, Arabisch (von rechts nach links), Chinesisch, Ja
 ### Jedes System, mit Python
 
 1. [Python 3.9+](https://www.python.org/downloads/) installieren. Unter Windows bei der Installation «Add python.exe to PATH» ankreuzen.
-2. [ZIP herunterladen](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip), entpacken und starten:
+2. [ZIP herunterladen](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip), entpacken und starten:
    - Windows: Doppelklick auf `start-windows.bat`
    - macOS / Linux: `./start.sh`
 
@@ -87,7 +87,7 @@ Aufbau:
 - `pc_remote/i18n.py`: Meldungen des PC-Programms in allen Sprachen
 - `pc_remote/static/`: die Handy-App; Übersetzungen in `static/locales/`
 
-Releases: Ein Tag wie `v1.0.0` baut `TapRemote-windows.exe` und veröffentlicht sie unter [Releases](https://github.com/universe-coder/mobile-pc-contoller/releases). Eine Sprache hinzufügen: [CONTRIBUTING.md](../CONTRIBUTING.md).
+Releases: Ein Tag wie `v1.0.0` baut `TapRemote-windows.exe` und veröffentlicht sie unter [Releases](https://github.com/universe-coder/pocket-tap/releases). Eine Sprache hinzufügen: [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## Lizenz
 

@@ -4,8 +4,8 @@
 
 Телефон становится пультом для ПК по домашнему Wi-Fi. Первый сценарий: смотреть YouTube на компьютере, стоя на беговой дорожке, и управлять видео с телефона.
 
-[![Скачать для Windows](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe)
-[![Скачать ZIP для macOS и Linux](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip)
+[![Скачать для Windows](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe)
+[![Скачать ZIP для macOS и Linux](https://img.shields.io/badge/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
 Состоит из двух частей:
 
@@ -26,7 +26,7 @@
 
 ### Windows: один файл, Python не нужен
 
-1. Скачайте [TapRemote-windows.exe](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe) и запустите.
+1. Скачайте [TapRemote-windows.exe](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe) и запустите.
    Windows может предупредить о неизвестном издателе, потому что программа не подписана: нажмите **Подробнее**, затем **Выполнить в любом случае**.
 2. Windows спросит про доступ к сети: разрешите для **частных сетей**.
 3. В окне появится QR-код. Отсканируйте его камерой телефона, телефон должен быть в той же Wi-Fi сети.
@@ -35,7 +35,7 @@
 ### Любая система, с Python
 
 1. Установите [Python 3.9+](https://www.python.org/downloads/). На Windows при установке отметьте «Add python.exe to PATH».
-2. [Скачайте ZIP](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip), распакуйте и запустите:
+2. [Скачайте ZIP](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip), распакуйте и запустите:
    - Windows: двойной клик по `start-windows.bat`
    - macOS / Linux: `./start.sh`
 
@@ -87,7 +87,7 @@ python -m pc_remote --dry-run   # команды пишутся в лог, кл�
 - `pc_remote/i18n.py`: сообщения программы на ПК на всех языках
 - `pc_remote/static/`: приложение для телефона, переводы в `static/locales/`
 
-Релизы: тег вида `v1.0.0` собирает `TapRemote-windows.exe` и публикует его на странице [Releases](https://github.com/universe-coder/mobile-pc-contoller/releases). Как добавить язык: [CONTRIBUTING.md](../CONTRIBUTING.md).
+Релизы: тег вида `v1.0.0` собирает `TapRemote-windows.exe` и публикует его на странице [Releases](https://github.com/universe-coder/pocket-tap/releases). Как добавить язык: [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## Лицензия
 

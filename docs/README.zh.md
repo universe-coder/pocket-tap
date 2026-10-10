@@ -4,8 +4,8 @@
 
 通过家里的 Wi-Fi，把手机变成电脑的遥控器。最初的场景：在跑步机上用电脑看 YouTube，用手机控制视频。
 
-[![下载 Windows 版](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe)
-[![下载 macOS / Linux 版 ZIP](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip)
+[![下载 Windows 版](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe)
+[![下载 macOS / Linux 版 ZIP](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
 由两部分组成：
 
@@ -26,7 +26,7 @@
 
 ### Windows：单个文件，无需 Python
 
-1. 下载 [TapRemote-windows.exe](https://github.com/universe-coder/mobile-pc-contoller/releases/latest/download/TapRemote-windows.exe) 并运行。
+1. 下载 [TapRemote-windows.exe](https://github.com/universe-coder/pocket-tap/releases/latest/download/TapRemote-windows.exe) 并运行。
    由于程序没有代码签名，Windows 可能会提示"未知发布者"：点击**更多信息**，然后点击**仍要运行**。
 2. Windows 询问网络访问权限时，允许**专用网络**。
 3. 窗口中会出现二维码。用手机相机扫描，手机需要连接同一个 Wi-Fi。
@@ -35,7 +35,7 @@
 ### 任意系统，使用 Python
 
 1. 安装 [Python 3.9+](https://www.python.org/downloads/)。在 Windows 上安装时勾选 "Add python.exe to PATH"。
-2. [下载 ZIP](https://github.com/universe-coder/mobile-pc-contoller/archive/refs/heads/main.zip)，解压后运行：
+2. [下载 ZIP](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)，解压后运行：
    - Windows：双击 `start-windows.bat`
    - macOS / Linux：`./start.sh`
 
@@ -87,7 +87,7 @@ python -m pc_remote --dry-run   # 只记录指令，不实际按键
 - `pc_remote/i18n.py`：电脑端程序各语言的消息
 - `pc_remote/static/`：手机端应用，翻译位于 `static/locales/`
 
-发布：推送 `v1.0.0` 这样的标签会构建 `TapRemote-windows.exe` 并发布到 [Releases](https://github.com/universe-coder/mobile-pc-contoller/releases) 页面。添加新语言请见 [CONTRIBUTING.md](../CONTRIBUTING.md)。
+发布：推送 `v1.0.0` 这样的标签会构建 `TapRemote-windows.exe` 并发布到 [Releases](https://github.com/universe-coder/pocket-tap/releases) 页面。添加新语言请见 [CONTRIBUTING.md](../CONTRIBUTING.md)。
 
 ## 许可证
 

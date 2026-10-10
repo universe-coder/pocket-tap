@@ -7,4 +7,4 @@ TapRemote lets a phone press keys and move the mouse on your computer, so it is 
 
 ## Reporting a vulnerability
 
-Please report security issues privately through [GitHub security advisories](https://github.com/universe-coder/mobile-pc-contoller/security/advisories/new) rather than a public issue.
+Please report security issues privately through [GitHub security advisories](https://github.com/universe-coder/pocket-tap/security/advisories/new) rather than a public issue.
