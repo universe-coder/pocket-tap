@@ -37,5 +37,13 @@
   "kbd.send": "Type",
   "kbd.space": "Space",
   "pair.title": "Pairing needed",
-  "pair.text": "Start the program on your PC and scan its QR code with the phone camera."
+  "pair.text": "Start the program on your PC and scan its QR code with the phone camera.",
+  "install.banner": "Put the remote on your home screen",
+  "install.how": "How",
+  "install.dismiss": "Hide",
+  "install.title": "PocketTap on your home screen",
+  "install.ios": "In Safari, tap Share (the square with an arrow), then “Add to Home Screen”. The remote then opens from its icon like a regular app.",
+  "install.android": "Open the browser menu ⋮ and tap “Add to Home screen”. The remote opens from its icon and goes full screen on the first tap.",
+  "install.note": "The phone and the PC must be on the same Wi-Fi. If the remote stops opening after the PC's address changes, scan the QR code again.",
+  "install.ok": "Got it"
 }

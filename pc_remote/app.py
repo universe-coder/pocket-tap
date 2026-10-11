@@ -145,12 +145,24 @@ async def index(request):
     return web.FileResponse(STATIC_DIR / "index.html")
 
 
+async def manifest_handler(request):
+    """The web app manifest. With a valid key, the home-screen icon opens the
+    remote already paired: iOS keeps a home-screen app's storage apart from
+    Safari's, so the key saved in the browser is not there."""
+    manifest = json.loads((STATIC_DIR / "manifest.webmanifest").read_text(encoding="utf-8"))
+    if _authorized(request):
+        manifest["start_url"] = "/?t=" + request.query["t"]
+    return web.json_response(manifest, content_type="application/manifest+json",
+                             headers={"Cache-Control": "no-store"})
+
+
 def create_app(backend, token, clients=None):
     app = web.Application()
     app[CLIENTS_KEY] = clients if clients is not None else Clients()
     app[BACKEND_KEY] = backend
     app[TOKEN_KEY] = token
     app.router.add_get("/", index)
+    app.router.add_get("/manifest.webmanifest", manifest_handler)
     app.router.add_get("/check", check_handler)
     app.router.add_get("/ws", ws_handler)
     app.router.add_static("/static/", STATIC_DIR)

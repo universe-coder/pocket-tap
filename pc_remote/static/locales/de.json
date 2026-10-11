@@ -37,5 +37,13 @@
   "kbd.send": "Senden",
   "kbd.space": "Leertaste",
   "pair.title": "Kopplung nötig",
-  "pair.text": "Starte das Programm auf dem PC und scanne den QR-Code mit der Handykamera."
+  "pair.text": "Starte das Programm auf dem PC und scanne den QR-Code mit der Handykamera.",
+  "install.banner": "Fernbedienung auf den Startbildschirm legen",
+  "install.how": "Wie",
+  "install.dismiss": "Ausblenden",
+  "install.title": "PocketTap auf dem Startbildschirm",
+  "install.ios": "Tippen Sie in Safari auf „Teilen“ (das Quadrat mit Pfeil) und dann auf „Zum Home-Bildschirm“. Danach öffnet sich die Fernbedienung über ihr Symbol wie eine normale App.",
+  "install.android": "Öffnen Sie das Browsermenü ⋮ und tippen Sie auf „Zum Startbildschirm hinzufügen“. Die Fernbedienung öffnet sich über ihr Symbol und wechselt beim ersten Tippen in den Vollbildmodus.",
+  "install.note": "Handy und PC müssen im selben WLAN sein. Wenn sich die Adresse des PCs ändert und die Fernbedienung nicht mehr öffnet, scannen Sie den QR-Code erneut.",
+  "install.ok": "Verstanden"
 }

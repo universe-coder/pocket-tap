@@ -53,7 +53,7 @@ Die Handy-App spricht Englisch, Arabisch (von rechts nach links), Chinesisch, Ja
    Windows warnt eventuell vor einem unbekannten Herausgeber, weil das Programm nicht signiert ist: **Weitere Informationen** und dann **Trotzdem ausführen** wählen.
 2. Fragt Windows nach Netzwerkzugriff, für **private Netzwerke** erlauben.
 3. Im Fenster erscheint ein QR-Code. Mit der Handykamera scannen; das Handy muss im selben WLAN sein.
-4. Damit sich die Fernbedienung mit einem Tippen öffnet: im Browsermenü des Handys «Zum Startbildschirm hinzufügen».
+4. Damit sich die Fernbedienung mit einem Tippen öffnet, legen Sie sie auf den Startbildschirm: Die Fernbedienung zeigt dafür einen Hinweis mit den Schritten für Ihr Handy. Das Symbol öffnet sie bereits gekoppelt; auf dem iPhone läuft sie wie eine normale App, auf Android wechselt sie beim ersten Tippen in den Vollbildmodus (über WLAN ohne HTTPS erlauben Android-Browser keine vollständige Installation).
 
 ### Jedes System, mit Python
 

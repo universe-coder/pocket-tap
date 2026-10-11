@@ -1,18 +1,23 @@
 "use strict";
 
 // ---- Pairing token -------------------------------------------------------
-// The QR code opens "/?t=TOKEN". Keep the token and drop it from the address
-// bar, so a home-screen shortcut created afterwards still works.
+// The QR code opens "/?t=TOKEN". Remember the token, and keep it in the address
+// so a home-screen icon added from this page opens already paired.
 const TOKEN_STORAGE = "pc-remote-token";
 
 function readToken() {
-  const fromUrl = new URLSearchParams(location.search).get("t");
-  if (fromUrl) {
-    try { localStorage.setItem(TOKEN_STORAGE, fromUrl); } catch (_) {}
-    history.replaceState(null, "", location.pathname);
-    return fromUrl;
+  const params = new URLSearchParams(location.search);
+  let value = params.get("t");
+  if (value) {
+    try { localStorage.setItem(TOKEN_STORAGE, value); } catch (_) {}
+  } else {
+    try { value = localStorage.getItem(TOKEN_STORAGE); } catch (_) {}
+    if (value) {
+      params.set("t", value);
+      history.replaceState(null, "", `${location.pathname}?${params}`);
+    }
   }
-  try { return localStorage.getItem(TOKEN_STORAGE); } catch (_) { return null; }
+  return value;
 }
 
 const token = readToken();
@@ -267,6 +272,69 @@ wakeBtn.addEventListener("click", async () => {
 
 // The browser only grants a wake lock after a user gesture.
 document.addEventListener("pointerdown", () => requestWakeLock(), { once: true });
+
+// ---- Home screen ---------------------------------------------------------
+// Opened from the home-screen icon the page runs standalone. Otherwise offer
+// to add it there: Chrome's own install prompt when it fires, else the steps.
+const standalone = matchMedia("(display-mode: standalone)").matches
+  || matchMedia("(display-mode: fullscreen)").matches || navigator.standalone === true;
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent)
+  || (navigator.userAgent.includes("Macintosh") && navigator.maxTouchPoints > 1);
+const isPhone = matchMedia("(pointer: coarse)").matches;
+const INSTALL_STORAGE = "pc-remote-install-hidden";
+const installBar = document.getElementById("install");
+const installSheet = document.getElementById("install-sheet");
+let installPrompt = null;
+
+function installHidden() {
+  try { return localStorage.getItem(INSTALL_STORAGE) === "1"; } catch (_) { return false; }
+}
+
+installBar.hidden = standalone || !isPhone || installHidden();
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  installPrompt = e;
+  if (!standalone && !installHidden()) installBar.hidden = false;
+});
+window.addEventListener("appinstalled", () => { installBar.hidden = true; });
+
+document.getElementById("install-how").addEventListener("click", async () => {
+  if (installPrompt) {
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+    installPrompt = null;
+    if (outcome === "accepted") installBar.hidden = true;
+    return;
+  }
+  document.getElementById("install-steps").textContent = i18n.t(isIOS ? "install.ios" : "install.android");
+  installSheet.hidden = false;
+});
+document.getElementById("install-ok").addEventListener("click", () => { installSheet.hidden = true; });
+installSheet.addEventListener("click", (e) => { if (e.target === installSheet) installSheet.hidden = true; });
+document.getElementById("install-close").addEventListener("click", () => {
+  installBar.hidden = true;
+  try { localStorage.setItem(INSTALL_STORAGE, "1"); } catch (_) {}
+});
+
+// Over plain http on the home network Android browsers add a home-screen
+// icon that opens in a normal tab, so go full screen on the first tap.
+// Leaving full screen on purpose (the back gesture) turns this off until
+// the app is reopened.
+let autoFullscreen = !standalone && isPhone && !isIOS && Boolean(document.documentElement.requestFullscreen);
+let fullscreenArmed = autoFullscreen;
+
+document.addEventListener("pointerdown", () => {
+  if (!fullscreenArmed || document.fullscreenElement) return;
+  fullscreenArmed = false;
+  document.documentElement.requestFullscreen({ navigationUI: "hide" }).catch(() => {});
+}, true);
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement && document.visibilityState === "visible") autoFullscreen = false;
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && autoFullscreen) fullscreenArmed = true;
+});
 
 // ---- Start ---------------------------------------------------------------
 // Dynamic labels are set from code, so redraw them when the language changes.

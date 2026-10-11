@@ -37,5 +37,13 @@
   "kbd.send": "输入",
   "kbd.space": "空格",
   "pair.title": "需要配对",
-  "pair.text": "在电脑上启动程序，然后用手机相机扫描二维码。"
+  "pair.text": "在电脑上启动程序，然后用手机相机扫描二维码。",
+  "install.banner": "把遥控器添加到主屏幕",
+  "install.how": "怎么做",
+  "install.dismiss": "隐藏",
+  "install.title": "把 PocketTap 放到主屏幕",
+  "install.ios": "在 Safari 中点“分享”（带箭头的方框），再点“添加到主屏幕”。之后可以像普通应用一样从图标打开遥控器。",
+  "install.android": "打开浏览器菜单 ⋮，点“添加到主屏幕”。从图标打开遥控器后，第一次点击会进入全屏。",
+  "install.note": "手机和电脑必须连接同一个 Wi-Fi。如果电脑地址变了、遥控器打不开，请重新扫描二维码。",
+  "install.ok": "知道了"
 }

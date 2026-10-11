@@ -7,8 +7,19 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PocketTap">
   <title>PocketTap</title>
-  <link rel="manifest" href="/static/manifest.webmanifest">
+  <script>
+    // The manifest carries the pairing key, so the home-screen icon opens paired.
+    (function () {
+      var t = new URLSearchParams(location.search).get("t");
+      try { t = t || localStorage.getItem("pc-remote-token"); } catch (e) {}
+      var link = document.createElement("link");
+      link.rel = "manifest";
+      link.href = "/manifest.webmanifest" + (t ? "?t=" + encodeURIComponent(t) : "");
+      document.head.appendChild(link);
+    })();
+  </script>
   <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
   <link rel="icon" href="/static/icon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
@@ -20,6 +31,12 @@
     <select id="lang" class="chip" data-i18n-aria="lang.label" aria-label="Language"></select>
     <button id="wake" class="chip" type="button" aria-pressed="false" data-i18n="wake.auto">Screen: auto</button>
   </header>
+
+  <div id="install" class="install" hidden>
+    <span data-i18n="install.banner">Put the remote on your home screen</span>
+    <button id="install-how" class="chip chip--accent" type="button" data-i18n="install.how">How</button>
+    <button id="install-close" class="install__close" type="button" data-i18n-aria="install.dismiss" aria-label="Hide">×</button>
+  </div>
 
   <main>
     <section id="tab-media" class="tab tab--active" data-i18n-aria="tab.media" aria-label="Media">
@@ -104,6 +121,16 @@ Tap to click, two fingers to scroll</span>
   <div id="pair" class="pair" hidden>
     <h1 data-i18n="pair.title">Pairing needed</h1>
     <p data-i18n="pair.text">Start the program on your PC and scan its QR code with the phone camera.</p>
+  </div>
+
+  <div id="install-sheet" class="sheet" hidden>
+    <div class="sheet__card" role="dialog" aria-modal="true" aria-labelledby="install-title">
+      <img src="/static/icon-192.png" width="64" height="64" alt="">
+      <h2 id="install-title" data-i18n="install.title">PocketTap on your home screen</h2>
+      <p id="install-steps"></p>
+      <p class="sheet__note" data-i18n="install.note">The phone and the PC must be on the same Wi-Fi. If the remote stops opening after the PC's address changes, scan the QR code again.</p>
+      <button id="install-ok" class="btn" type="button" data-i18n="install.ok">Got it</button>
+    </div>
   </div>
 
   <script src="/static/i18n.js"></script>

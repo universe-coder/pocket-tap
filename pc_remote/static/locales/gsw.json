@@ -37,5 +37,13 @@
   "kbd.send": "Schicke",
   "kbd.space": "Leertaste",
   "pair.title": "Kopple nötig",
-  "pair.text": "Start s Programm uf em PC und scann de QR-Code mit de Handykamera."
+  "pair.text": "Start s Programm uf em PC und scann de QR-Code mit de Handykamera.",
+  "install.banner": "Fernbedienig uf de Startbildschirm tue",
+  "install.how": "Wie",
+  "install.dismiss": "Usblände",
+  "install.title": "PocketTap uf em Startbildschirm",
+  "install.ios": "Tipp in Safari uf „Teile“ (s Quadrat mit em Pfiil) und denn uf „Zum Home-Bildschirm“. Denn gaht d Fernbedienig über ihres Symbol uf wie e normali App.",
+  "install.android": "Mach s Browsermenü ⋮ uf und tipp uf „Zum Startbildschirm hinzufügen“. D Fernbedienig gaht über ihres Symbol uf und wächslet bim erschte Tippe in Vollbild.",
+  "install.note": "Handy und PC müend im gliiche WLAN sii. Wenn sich d Adrässe vom PC änderet und d Fernbedienig nümm ufgaht, scann de QR-Code nomal.",
+  "install.ok": "Alles klar"
 }

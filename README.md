@@ -53,7 +53,7 @@ The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian
    Windows may warn about an unknown publisher because the program is not code-signed: click **More info**, then **Run anyway**.
 2. When Windows asks about network access, allow it for **private networks**.
 3. A QR code appears in the window. Scan it with your phone camera; the phone must be on the same Wi-Fi.
-4. To open the remote with one tap, add it to the home screen from the phone browser's menu.
+4. To open the remote with one tap, add it to the home screen: the remote shows a banner with the steps for your phone. The icon opens it already paired; on iPhone it runs like a regular app, on Android it goes full screen on the first tap (over plain Wi-Fi without HTTPS, Android browsers don't allow a full install).
 
 ### Any system, with Python
 

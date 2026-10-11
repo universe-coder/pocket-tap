@@ -70,7 +70,7 @@ async def test_index_and_static_served(client):
     resp = await client.get("/")
     assert resp.status == 200
     assert "PocketTap" in await resp.text()
-    for path in ("/static/app.js", "/static/style.css", "/static/manifest.webmanifest", "/static/icon.svg", "/static/icon-192.png",
+    for path in ("/static/app.js", "/static/style.css", "/static/icon.svg", "/static/icon-192.png",
                  "/static/apple-touch-icon.png",
                  "/static/i18n.js", "/static/locales/en.json", "/static/locales/ar.json"):
         assert (await client.get(path)).status == 200, path
@@ -213,3 +213,13 @@ def test_window_module_and_tray_icon():
     pytest.importorskip("tkinter")
     from pc_remote.gui import tray_image
     assert tray_image(32).size == (32, 32)
+
+
+async def test_manifest_opens_paired(client):
+    resp = await client.get(f"/manifest.webmanifest?t={TOKEN}")
+    assert resp.status == 200
+    manifest = await resp.json(content_type=None)
+    assert manifest["start_url"] == f"/?t={TOKEN}" and manifest["display"] == "standalone"
+    # A wrong key never ends up in the icon.
+    manifest = await (await client.get("/manifest.webmanifest?t=wrong")).json(content_type=None)
+    assert manifest["start_url"] == "/"
