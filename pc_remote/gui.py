@@ -10,9 +10,9 @@ import sys
 import threading
 import time
 import tkinter as tk
+from tkinter import font as tkfont
 import webbrowser
 from tkinter import ttk
-from tkinter.scrolledtext import ScrolledText
 
 import qrcode
 from PIL import Image, ImageDraw, ImageTk
@@ -27,6 +27,21 @@ from .updates import check_for_update
 log = logging.getLogger(__name__)
 
 POLL_MS = 200
+
+# Same palette as the phone app (static/style.css).
+BG = "#0f1115"
+SURFACE = "#1b1f27"
+SURFACE_2 = "#232833"
+BORDER = "#2a303b"
+TEXT = "#f2f4f8"
+MUTED = "#9aa3b2"
+ACCENT = "#ff3b3b"
+ACCENT_PRESSED = "#d92f2f"
+OK = "#3ccf7a"
+ERROR = "#ff6b6b"
+WARN_BG = "#2b2414"
+WARN_BORDER = "#5c4a1c"
+WARN_TEXT = "#ffd479"
 UPDATE_EVERY_MS = 24 * 3600 * 1000  # the program may stay in the tray for days
 RTL = {"ar"}
 
@@ -72,8 +87,8 @@ class App:
 
         self.root = tk.Tk()
         self.root.title("PocketTap")
-        self.root.geometry("880x640")
-        self.root.minsize(720, 480)
+        self.root.geometry("920x700")
+        self.root.minsize(840, 660)
         try:
             self._icon = ImageTk.PhotoImage(tray_image(64))
             self.root.iconphoto(True, self._icon)
@@ -93,71 +108,149 @@ class App:
         return tr(self.lang, key, **kw)
 
     # ---- layout -----------------------------------------------------------
-    def _build(self):
-        style = ttk.Style(self.root)
-        style.configure("Title.TLabel", font=("Segoe UI", 16, "bold"))
-        style.configure("Muted.TLabel", foreground="#666")
-        style.configure("Ok.TLabel", foreground="#1f8f4e")
-        style.configure("Err.TLabel", foreground="#c62828")
-        style.configure("Update.TFrame", background="#fff4d6")
-        style.configure("Update.TLabel", background="#fff4d6")
+    def _fonts(self):
+        families = set(tkfont.families(self.root))
+        ui = next((f for f in ("Segoe UI", "SF Pro Text", "Helvetica Neue", "Noto Sans", "DejaVu Sans") if f in families), "TkDefaultFont")
+        mono = next((f for f in ("Cascadia Mono", "Consolas", "Menlo", "DejaVu Sans Mono") if f in families), "TkFixedFont")
+        return ui, mono
 
-        anchor = "e" if self.lang in RTL else "w"
-        outer = ttk.Frame(self.root, padding=14)
+    def _style(self):
+        ui, mono = self._fonts()
+        self.f_body = (ui, 10)
+        self.f_small = (ui, 9)
+        self.f_title = (ui, 18, "bold")
+        self.f_section = (ui, 11, "bold")
+        self.f_mono = (mono, 9)
+        root = self.root
+        root.configure(bg=BG)
+        root.option_add("*TCombobox*Listbox.background", SURFACE_2)
+        root.option_add("*TCombobox*Listbox.foreground", TEXT)
+        root.option_add("*TCombobox*Listbox.selectBackground", ACCENT)
+        root.option_add("*TCombobox*Listbox.selectForeground", "white")
+        root.option_add("*TCombobox*Listbox.font", self.f_body)
+
+        st = ttk.Style(root)
+        st.theme_use("clam")
+        st.configure(".", background=BG, foreground=TEXT, font=self.f_body, borderwidth=0,
+                     focuscolor=ACCENT, troughcolor=SURFACE, bordercolor=BORDER,
+                     lightcolor=BORDER, darkcolor=BORDER)
+        for name, bg, active in (("Accent", ACCENT, ACCENT_PRESSED), ("Ghost", SURFACE_2, BORDER)):
+            st.configure(f"{name}.TButton", background=bg, foreground="white" if name == "Accent" else TEXT,
+                         padding=(14, 8), font=(ui, 10, "bold"), borderwidth=0, relief="flat")
+            st.map(f"{name}.TButton", background=[("pressed", active), ("active", active)])
+        st.configure("TCombobox", fieldbackground=SURFACE_2, background=SURFACE_2, foreground=TEXT,
+                     arrowcolor=MUTED, padding=6, borderwidth=0)
+        st.map("TCombobox", fieldbackground=[("readonly", SURFACE_2)], foreground=[("readonly", TEXT)],
+               selectbackground=[("readonly", SURFACE_2)], selectforeground=[("readonly", TEXT)])
+        st.configure("TEntry", fieldbackground=SURFACE_2, foreground=TEXT, padding=6, borderwidth=0)
+        st.map("TEntry", fieldbackground=[("readonly", SURFACE_2)])
+        st.configure("Treeview", background=SURFACE, fieldbackground=SURFACE, foreground=TEXT,
+                     rowheight=30, borderwidth=0, font=self.f_body)
+        st.map("Treeview", background=[("selected", SURFACE_2)], foreground=[("selected", TEXT)])
+        st.configure("Treeview.Heading", background=SURFACE, foreground=MUTED, font=self.f_small,
+                     borderwidth=0, relief="flat", padding=(4, 4))
+        st.map("Treeview.Heading", background=[("active", SURFACE)])
+        st.layout("Treeview", [("Treeview.treearea", {"sticky": "nswe"})])
+        st.configure("Vertical.TScrollbar", background=SURFACE_2, troughcolor=BG, arrowcolor=MUTED,
+                     bordercolor=BG, lightcolor=SURFACE_2, darkcolor=SURFACE_2, borderwidth=0, gripcount=0,
+                     arrowsize=12)
+        st.map("Vertical.TScrollbar", background=[("active", BORDER)])
+
+    def _card(self, parent, **pack):
+        card = tk.Frame(parent, bg=SURFACE, highlightthickness=1, highlightbackground=BORDER, padx=16, pady=14)
+        card.pack(**pack)
+        return card
+
+    def _label(self, parent, text="", fg=TEXT, font=None, bg=SURFACE, **kw):
+        return tk.Label(parent, text=text, fg=fg, bg=bg, font=font or self.f_body, **kw)
+
+    def _build(self):
+        self._style()
+        rtl = self.lang in RTL
+        anchor = "e" if rtl else "w"
+        justify = "right" if rtl else "left"
+        outer = tk.Frame(self.root, bg=BG, padx=20, pady=16)
         outer.pack(fill="both", expand=True)
 
-        head = ttk.Frame(outer)
+        # Header: logo, name, version, server status pill.
+        head = tk.Frame(outer, bg=BG)
         head.pack(fill="x")
-        ttk.Label(head, text="PocketTap", style="Title.TLabel").pack(side="left")
-        ttk.Label(head, text=f"  {__version__}", style="Muted.TLabel").pack(side="left", pady=(6, 0))
-        self.status = ttk.Label(head, text="", style="Ok.TLabel")
+        self._logo = ImageTk.PhotoImage(tray_image(40))
+        tk.Label(head, image=self._logo, bg=BG).pack(side="left")
+        self._label(head, "PocketTap", font=self.f_title, bg=BG).pack(side="left", padx=(10, 6))
+        self._label(head, f"v{__version__}", fg=MUTED, font=self.f_small, bg=BG).pack(side="left", pady=(8, 0))
+        self.status = tk.Label(head, text="", bg=SURFACE, fg=TEXT, font=self.f_small, padx=12, pady=6,
+                               highlightthickness=1, highlightbackground=BORDER)
         self.status.pack(side="right")
 
-        self.update_bar = ttk.Frame(outer, style="Update.TFrame", padding=(10, 6))
-        self.update_label = ttk.Label(self.update_bar, text="", style="Update.TLabel")
+        # Update banner, shown only when GitHub has a newer release.
+        self.update_bar = tk.Frame(outer, bg=WARN_BG, padx=14, pady=10, highlightthickness=1,
+                                   highlightbackground=WARN_BORDER)
+        self.update_label = self._label(self.update_bar, fg=WARN_TEXT, bg=WARN_BG, font=(self.f_body[0], 10, "bold"))
         self.update_label.pack(side="left")
-        ttk.Button(self.update_bar, text=self.t("download"), command=self.open_update).pack(side="right")
+        ttk.Button(self.update_bar, text=self.t("download"), style="Accent.TButton",
+                   command=self.open_update, cursor="hand2").pack(side="right")
 
-        body = ttk.Frame(outer)
-        body.pack(fill="both", expand=True, pady=(12, 0))
+        body = tk.Frame(outer, bg=BG)
+        body.pack(fill="both", expand=True, pady=(16, 0))
         self.body = body
 
-        left = ttk.Frame(body)
-        left.pack(side="left", fill="y", padx=(0, 16))
-        ttk.Label(left, text=self.t("scan"), wraplength=280, justify="left").pack(anchor=anchor)
-        self.qr_label = ttk.Label(left)
-        self.qr_label.pack(pady=8)
+        # Left: pairing card.
+        left = self._card(body, side="left", fill="y", padx=(0, 16))
+        self._label(left, self.t("scan"), font=self.f_section, wraplength=280, justify=justify).pack(anchor=anchor)
+        qr_frame = tk.Frame(left, bg="white", padx=10, pady=10)
+        qr_frame.pack(pady=(10, 10))
+        self.qr_label = tk.Label(qr_frame, bg="white", bd=0)
+        self.qr_label.pack()
         self.url_var = tk.StringVar()
-        url_entry = ttk.Entry(left, textvariable=self.url_var, state="readonly", width=40)
-        url_entry.pack(fill="x")
-        self.copy_btn = ttk.Button(left, text=self.t("copy"), command=self.copy_url)
-        self.copy_btn.pack(fill="x", pady=(6, 14))
+        ttk.Entry(left, textvariable=self.url_var, state="readonly", font=self.f_small).pack(fill="x")
+        self.copy_btn = ttk.Button(left, text=self.t("copy"), style="Accent.TButton", command=self.copy_url, cursor="hand2")
+        self.copy_btn.pack(fill="x", pady=(8, 16))
 
-        ttk.Label(left, text=self.t("network")).pack(anchor=anchor)
-        row = ttk.Frame(left)
-        row.pack(fill="x", pady=(2, 2))
+        self._label(left, self.t("network"), font=self.f_section).pack(anchor=anchor)
+        row = tk.Frame(left, bg=SURFACE)
+        row.pack(fill="x", pady=(6, 6))
         self.net_var = tk.StringVar()
-        self.net_box = ttk.Combobox(row, textvariable=self.net_var, state="readonly")
+        self.net_box = ttk.Combobox(row, textvariable=self.net_var, state="readonly", font=self.f_body)
         self.net_box.pack(side="left", fill="x", expand=True)
         self.net_box.bind("<<ComboboxSelected>>", lambda e: self.select_network())
-        ttk.Button(row, text=self.t("refresh"), command=lambda: self.refresh_networks(self.current_ip)).pack(side="left", padx=(6, 0))
-        ttk.Label(left, text=self.t("network_hint"), style="Muted.TLabel", wraplength=280, justify="left").pack(anchor=anchor)
+        ttk.Button(row, text="⟳", width=3, style="Ghost.TButton", cursor="hand2",
+                   command=lambda: self.refresh_networks(self.current_ip)).pack(side="left", padx=(8, 0))
+        self._label(left, self.t("network_hint"), fg=MUTED, font=self.f_small, wraplength=280,
+                    justify=justify).pack(anchor=anchor)
 
-        right = ttk.Frame(body)
+        # Right: connected phones and log.
+        right = tk.Frame(body, bg=BG)
         right.pack(side="left", fill="both", expand=True)
-        ttk.Label(right, text=self.t("connections")).pack(anchor=anchor)
-        cols = ("address", "device", "since")
-        self.tree = ttk.Treeview(right, columns=cols, show="headings", height=5)
-        for col, width in zip(cols, (130, 220, 80)):
-            self.tree.heading(col, text=self.t(f"col_{col}"))
-            self.tree.column(col, width=width, anchor="w")
-        self.tree.pack(fill="x", pady=(2, 0))
-        self.empty_label = ttk.Label(right, text=self.t("no_connections"), style="Muted.TLabel")
-        self.empty_label.pack(anchor=anchor, pady=(2, 10))
 
-        ttk.Label(right, text=self.t("log")).pack(anchor=anchor)
-        self.log_view = ScrolledText(right, height=10, state="disabled", wrap="word", font=("Consolas", 9))
-        self.log_view.pack(fill="both", expand=True, pady=(2, 0))
+        phones = self._card(right, fill="x")
+        title = tk.Frame(phones, bg=SURFACE)
+        title.pack(fill="x")
+        self._label(title, self.t("connections"), font=self.f_section).pack(side="right" if rtl else "left")
+        self.count_badge = tk.Label(title, text="0", bg=SURFACE_2, fg=MUTED, font=self.f_small, padx=8)
+        self.count_badge.pack(side="right" if rtl else "left", padx=8)
+        self.phones_area = tk.Frame(phones, bg=SURFACE, height=150)
+        self.phones_area.pack(fill="x", pady=(10, 0))
+        self.phones_area.pack_propagate(False)
+        cols = ("address", "device", "since")
+        self.tree = ttk.Treeview(self.phones_area, columns=cols, show="headings", height=4, selectmode="none")
+        for col, width in zip(cols, (130, 230, 90)):
+            self.tree.heading(col, text=self.t(f"col_{col}").upper() if self.lang in ("en", "de", "gsw", "ru") else self.t(f"col_{col}"), anchor=anchor)
+            self.tree.column(col, width=width, anchor=anchor)
+        self.empty_label = self._label(self.phones_area, self.t("no_connections"), fg=MUTED)
+
+        logs = self._card(right, fill="both", expand=True, pady=(16, 0))
+        self._label(logs, self.t("log"), font=self.f_section).pack(anchor=anchor)
+        log_box = tk.Frame(logs, bg=SURFACE)
+        log_box.pack(fill="both", expand=True, pady=(10, 0))
+        self.log_view = tk.Text(log_box, height=8, state="disabled", wrap="word", font=self.f_mono,
+                                bg=BG, fg=MUTED, bd=0, highlightthickness=0, padx=10, pady=8,
+                                insertbackground=TEXT, selectbackground=SURFACE_2)
+        scroll = ttk.Scrollbar(log_box, orient="vertical", command=self.log_view.yview)
+        self.log_view.configure(yscrollcommand=scroll.set)
+        scroll.pack(side="right", fill="y")
+        self.log_view.pack(side="left", fill="both", expand=True)
+        self.log_view.tag_configure("time", foreground="#5f6878")
 
     # ---- network / QR -----------------------------------------------------
     def refresh_networks(self, keep_ip=None):
@@ -174,7 +267,7 @@ class App:
         url = f"http://{self.current_ip}:{self.port}/?t={self.token}"
         self.url_var.set(url)
         img = qrcode.make(url, box_size=7, border=2).get_image().convert("RGB")
-        self._qr = ImageTk.PhotoImage(img.resize((260, 260), Image.NEAREST))
+        self._qr = ImageTk.PhotoImage(img.resize((220, 220), Image.NEAREST))
         self.qr_label.configure(image=self._qr)
         if save:
             save_settings(ip=self.current_ip)
@@ -188,9 +281,10 @@ class App:
     # ---- state ------------------------------------------------------------
     def show_server_state(self):
         if self.server.error is not None:
-            self.status.configure(text=self.t("port_busy", port=self.port), style="Err.TLabel", wraplength=420)
+            self.status.configure(text="●  " + self.t("port_busy", port=self.port), fg=ERROR, wraplength=420,
+                                  justify="left")
         else:
-            self.status.configure(text="● " + self.t("app_running", port=self.port), style="Ok.TLabel")
+            self.status.configure(text="●  " + self.t("app_running", port=self.port), fg=OK)
 
     def _refresh_clients(self):
         items = self.clients.snapshot()
@@ -202,16 +296,22 @@ class App:
         for c in items:
             since = time.strftime("%H:%M", time.localtime(c["since"]))
             self.tree.insert("", "end", values=(c["address"], describe_device(c["user_agent"]), since))
+        self.count_badge.configure(text=str(len(items)), bg=OK if items else SURFACE_2,
+                                   fg=BG if items else MUTED)
         if items:
-            self.empty_label.pack_forget()
+            self.empty_label.place_forget()
+            self.tree.pack(fill="both", expand=True)
         else:
-            self.empty_label.pack(anchor="e" if self.lang in RTL else "w", pady=(2, 10), after=self.tree)
+            self.tree.pack_forget()
+            self.empty_label.place(relx=0.5, rely=0.5, anchor="center")
         if self.tray is not None:
             self.tray.title = f"PocketTap · {len(items)}"
 
     def _append_log(self, line):
         self.log_view.configure(state="normal")
-        self.log_view.insert("end", line + "\n")
+        stamp, _, text = line.partition("  ")
+        self.log_view.insert("end", stamp + "  ", "time")
+        self.log_view.insert("end", text + "\n")
         # Keep the view light on long runs.
         if int(self.log_view.index("end-1c").split(".")[0]) > 1000:
             self.log_view.delete("1.0", "200.0")
@@ -258,7 +358,7 @@ class App:
         self.update_url = url
         text = self.t("update_available", version=tag)
         self.update_label.configure(text=text)
-        self.update_bar.pack(fill="x", pady=(10, 0), before=self.body)
+        self.update_bar.pack(fill="x", pady=(14, 0), before=self.body)
         log.info(text)
         if self.tray is not None:
             try:
