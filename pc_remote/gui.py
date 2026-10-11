@@ -15,10 +15,10 @@ import webbrowser
 from tkinter import ttk
 
 import qrcode
-from PIL import Image, ImageDraw, ImageTk
+from PIL import Image, ImageTk
 
 from . import __version__
-from .app import describe_device
+from .app import STATIC_DIR, describe_device
 from .config import load_settings, save_settings
 from .i18n import tr
 from .net import candidate_ips
@@ -62,15 +62,10 @@ class QueueHandler(logging.Handler):
 
 
 def tray_image(size=64):
-    """The phone-with-play-button icon, drawn so no image file has to be shipped."""
-    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    s = size / 64
-    d.rounded_rectangle((2 * s, 2 * s, 62 * s, 62 * s), radius=14 * s, fill="#0f1115")
-    d.rounded_rectangle((17 * s, 10 * s, 47 * s, 54 * s), radius=6 * s, fill="#1b1f27", outline="#2a303b", width=max(1, int(2 * s)))
-    d.ellipse((22 * s, 18 * s, 42 * s, 38 * s), fill="#ff3b3b")
-    d.polygon([(29 * s, 23 * s), (29 * s, 33 * s), (37 * s, 28 * s)], fill="white")
-    return img
+    """The PocketTap icon; small sizes use a simpler drawing that stays readable."""
+    name = "icon-small.png" if size <= 40 else "icon-512.png"
+    with Image.open(STATIC_DIR / name) as img:
+        return img.convert("RGBA").resize((size, size), Image.LANCZOS)
 
 
 class App:
@@ -90,8 +85,8 @@ class App:
         self.root.geometry("920x700")
         self.root.minsize(840, 660)
         try:
-            self._icon = ImageTk.PhotoImage(tray_image(64))
-            self.root.iconphoto(True, self._icon)
+            self._icons = [ImageTk.PhotoImage(tray_image(n)) for n in (64, 32, 16)]
+            self.root.iconphoto(True, *self._icons)
         except tk.TclError:
             pass
         self.root.protocol("WM_DELETE_WINDOW", self.hide)
@@ -388,7 +383,7 @@ class App:
             pystray.MenuItem(self.t("tray_quit"), lambda: self.call_soon(self.quit)),
         )
         try:
-            self.tray = pystray.Icon("PocketTap", tray_image(64), "PocketTap", menu)
+            self.tray = pystray.Icon("PocketTap", tray_image(32), "PocketTap", menu)
             self.tray.run_detached()
         except Exception as exc:  # noqa: BLE001
             log.info("tray unavailable: %s", exc)

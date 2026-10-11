@@ -1,6 +1,8 @@
 <div dir="rtl">
 
-# PocketTap
+<p align="center"><img src="../pc_remote/static/icon.svg" width="128" alt="PocketTap"></p>
+
+<h1 align="center">PocketTap</h1>
 
 [English](../README.md) · **العربية** · [中文](README.zh.md) · [日本語](README.ja.md) · [Русский](README.ru.md) · [Deutsch / Schweiz](README.de.md)
 

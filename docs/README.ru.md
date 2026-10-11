@@ -1,4 +1,6 @@
-# PocketTap
+<p align="center"><img src="../pc_remote/static/icon.svg" width="128" alt="PocketTap"></p>
+
+<h1 align="center">PocketTap</h1>
 
 [English](../README.md) · [العربية](README.ar.md) · [中文](README.zh.md) · [日本語](README.ja.md) · **Русский** · [Deutsch / Schweiz](README.de.md)
 

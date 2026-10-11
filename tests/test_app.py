@@ -70,7 +70,8 @@ async def test_index_and_static_served(client):
     resp = await client.get("/")
     assert resp.status == 200
     assert "PocketTap" in await resp.text()
-    for path in ("/static/app.js", "/static/style.css", "/static/manifest.webmanifest", "/static/icon.svg",
+    for path in ("/static/app.js", "/static/style.css", "/static/manifest.webmanifest", "/static/icon.svg", "/static/icon-192.png",
+                 "/static/apple-touch-icon.png",
                  "/static/i18n.js", "/static/locales/en.json", "/static/locales/ar.json"):
         assert (await client.get(path)).status == 200, path
 
