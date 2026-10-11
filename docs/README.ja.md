@@ -24,7 +24,7 @@
 <tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="アラビア語（右から左）"><br><sub>アラビア語（右から左）</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="日本語"><br><sub>日本語</sub></td><td></td></tr>
 </table>
 
-<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="PC 用プログラム：スマートフォンで QR コードを読み取ります"><br><sub>PC 用プログラム：スマートフォンで QR コードを読み取ります</sub></p>
+<p align="center"><img src="screenshots/pc-window.png" width="520" alt="PC 用プログラム：スマートフォンで QR コードを読み取ります"><br><sub>PC 用プログラム：スマートフォンで QR コードを読み取ります</sub></p>
 
 2 つの部分からなります：
 
@@ -40,6 +40,8 @@
 **タッチパッド**：指でカーソル移動、タップでクリック、2 本指タップで右クリック、2 本指スクロール、ブラウザの「戻る」「進む」「更新」ボタン。
 
 **キーボード**：PC への文字入力（YouTube の検索など）、Enter、Esc、矢印キーなど。
+
+**PC のウィンドウ**：QR コード、ネットワークの選択（スマートフォンが接続できない場合は、つながっているネットワーク（通常は Wi-Fi）を選択）、接続中のスマートフォンの一覧、ログ。ウィンドウを閉じても、Windows では PocketTap がトレイで動作し続けます（macOS と Linux では最小化されます）。終了はトレイアイコンのメニューから。新しいバージョンを GitHub で確認し、ダウンロードを案内します。
 
 ## 使い方
 
@@ -64,6 +66,8 @@
 ペアリングキーは保存されるので、PC を再起動しても読み取り直す必要はありません。新しいキーを発行するには（古いスマートフォンは切断されます）：`--reset-token`、例：`start-windows.bat --reset-token`。
 
 PC 用プログラムはシステムの言語でメッセージを表示します。別の言語にするには `--lang en|ar|zh|ja|ru|de|gsw` を指定します。
+
+ウィンドウの代わりにターミナルを使うには `--console`、トレイに隠れた状態で起動するには `--minimized` を指定します。
 
 ## メディア操作のしくみ
 

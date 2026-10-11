@@ -24,7 +24,7 @@
 <tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="阿拉伯语，从右到左"><br><sub>阿拉伯语，从右到左</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="日语"><br><sub>日语</sub></td><td></td></tr>
 </table>
 
-<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="电脑端程序：用手机扫描二维码"><br><sub>电脑端程序：用手机扫描二维码</sub></p>
+<p align="center"><img src="screenshots/pc-window.png" width="520" alt="电脑端程序：用手机扫描二维码"><br><sub>电脑端程序：用手机扫描二维码</sub></p>
 
 由两部分组成：
 
@@ -40,6 +40,8 @@
 **触控板**：手指移动光标，轻点单击，双指轻点右键，双指滚动，以及浏览器的后退、前进、刷新按钮。
 
 **键盘**：在电脑上输入文字（例如在 YouTube 搜索），Enter、Esc、方向键等按键。
+
+**电脑窗口**：二维码、网络选择（如果手机连不上，请选择手机所在的网络，通常是 Wi-Fi）、已连接手机列表和日志。在 Windows 上关闭窗口后，PocketTap 会继续在托盘中运行（在 macOS 和 Linux 上窗口会最小化）；可通过托盘图标菜单退出。程序会在 GitHub 上检查新版本并提示下载。
 
 ## 开始使用
 
@@ -64,6 +66,8 @@
 配对密钥会被保存，重启电脑后无需重新扫描。生成新密钥（旧手机将断开）：`--reset-token`，例如 `start-windows.bat --reset-token`。
 
 电脑端程序使用系统语言显示消息；可用 `--lang en|ar|zh|ja|ru|de|gsw` 指定其他语言。
+
+使用 `--console` 在终端中运行而不打开窗口，使用 `--minimized` 启动时直接隐藏到托盘。
 
 ## 媒体控制原理
 

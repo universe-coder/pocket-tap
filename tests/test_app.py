@@ -1,3 +1,5 @@
+import asyncio
+
 import pytest
 
 from pc_remote.actions import ACTIONS, SPECIAL_KEYS, is_valid_key
@@ -128,3 +130,85 @@ def test_server_loop_is_selector_based():
         assert isinstance(loop, asyncio.SelectorEventLoop)
     finally:
         loop.close()
+
+
+async def test_connected_phones_are_listed(aiohttp_client, backend):
+    from pc_remote.app import Clients
+    clients = Clients()
+    client = await aiohttp_client(create_app(backend, TOKEN, clients))
+    ua = "Mozilla/5.0 (Linux; Android 14; Pixel 7) Chrome/141.0 Mobile Safari/537.36"
+    async with client.ws_connect(f"/ws?t={TOKEN}", headers={"User-Agent": ua}) as ws:
+        await ws.receive_json()
+        [phone] = clients.snapshot()
+        assert phone["user_agent"] == ua and phone["address"]
+    await ws.close()
+    for _ in range(50):
+        if not clients.snapshot():
+            break
+        await asyncio.sleep(0.01)
+    assert clients.snapshot() == []
+
+
+@pytest.mark.parametrize("ua, name", [
+    ("Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
+     "Android 10 · Chrome"),
+    ("Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 Version/18.1 Mobile/15E148 Safari/604.1",
+     "iPhone · iOS 18 · Safari"),
+    ("Mozilla/5.0 (Linux; Android 13; SM-S911B) AppleWebKit/537.36 SamsungBrowser/23.0 Chrome/115.0 Mobile Safari/537.36",
+     "Android 13 · Samsung Internet"),
+    ("", "?"),
+])
+def test_describe_device(ua, name):
+    from pc_remote.app import describe_device
+    assert describe_device(ua) == name
+
+
+@pytest.mark.parametrize("candidate, current, newer", [
+    ("v1.2.0", "1.1.0", True),
+    ("v1.1.0", "1.1.0", False),
+    ("v1.1", "1.1.0", False),
+    ("v1.10.0", "1.9.3", True),
+    ("v1.0.9", "1.1.0", False),
+    ("nightly", "1.1.0", False),
+])
+def test_is_newer(candidate, current, newer):
+    from pc_remote.updates import is_newer
+    assert is_newer(candidate, current) is newer
+
+
+def test_server_thread_reports_busy_port(backend):
+    import socket
+    from pc_remote.server import ServerThread
+    with socket.socket() as taken:
+        taken.bind(("127.0.0.1", 0))
+        taken.listen()
+        port = taken.getsockname()[1]
+        server = ServerThread(create_app(backend, TOKEN), "127.0.0.1", port)
+        server.start()
+        assert server.ready.wait(5)
+        server.join(5)
+    assert isinstance(server.error, OSError)
+
+
+async def test_server_thread_serves_and_stops(backend):
+    import socket
+    import urllib.request
+    from pc_remote.server import ServerThread
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        port = s.getsockname()[1]
+    server = ServerThread(create_app(backend, TOKEN), "127.0.0.1", port)
+    server.start()
+    assert server.ready.wait(5) and server.error is None
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    status = await asyncio.to_thread(lambda: opener.open(f"http://127.0.0.1:{port}/check?t={TOKEN}").status)
+    assert status == 204
+    server.stop()
+    server.join(5)
+    assert not server.is_alive()
+
+
+def test_window_module_and_tray_icon():
+    pytest.importorskip("tkinter")
+    from pc_remote.gui import tray_image
+    assert tray_image(32).size == (32, 32)

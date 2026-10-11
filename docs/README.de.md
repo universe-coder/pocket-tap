@@ -24,7 +24,7 @@ Das Handy wird zur Fernbedienung für den PC, über das WLAN zu Hause. Gedacht z
 <tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="Arabisch, von rechts nach links"><br><sub>Arabisch, von rechts nach links</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="Japanisch"><br><sub>Japanisch</sub></td><td></td></tr>
 </table>
 
-<p align="center"><img src="screenshots/pc-qr.png" width="520" alt="PC-Programm: QR-Code mit dem Handy scannen"><br><sub>PC-Programm: QR-Code mit dem Handy scannen</sub></p>
+<p align="center"><img src="screenshots/pc-window.png" width="520" alt="PC-Programm: QR-Code mit dem Handy scannen"><br><sub>PC-Programm: QR-Code mit dem Handy scannen</sub></p>
 
 Zwei Teile:
 
@@ -40,6 +40,8 @@ Die Handy-App spricht Englisch, Arabisch (von rechts nach links), Chinesisch, Ja
 **Touchpad**: Zeiger mit dem Finger bewegen, Tippen ist ein Klick, Tippen mit zwei Fingern ein Rechtsklick, Scrollen mit zwei Fingern, dazu Zurück, Vor und Neu laden für den Browser.
 
 **Tastatur**: Text auf dem PC eingeben (zum Beispiel eine YouTube-Suche), Enter, Esc, Pfeiltasten und weitere Tasten.
+
+**PC-Fenster**: QR-Code, Netzwerkauswahl (wenn das Handy keine Verbindung bekommt, das Netzwerk wählen, in dem es ist, meist WLAN), Liste der verbundenen Handys und ein Protokoll. Schließt man das Fenster, läuft PocketTap unter Windows im Infobereich weiter (unter macOS und Linux wird es minimiert); beenden über das Menü des Symbols. Das Programm prüft auf GitHub, ob es eine neue Version gibt, und bietet den Download an.
 
 ## Loslegen
 
@@ -64,6 +66,8 @@ Die Handy-App spricht Englisch, Arabisch (von rechts nach links), Chinesisch, Ja
 Der Kopplungsschlüssel wird gespeichert, nach einem Neustart des PCs muss nicht erneut gescannt werden. Neuer Schlüssel (alte Handys werden getrennt): `--reset-token`, zum Beispiel `start-windows.bat --reset-token`.
 
 Das PC-Programm schreibt seine Meldungen in der Systemsprache; eine andere wählt `--lang en|ar|zh|ja|ru|de|gsw`.
+
+`--console` nutzt das Terminal statt eines Fensters, `--minimized` startet versteckt im Infobereich.
 
 ## So funktioniert die Mediensteuerung
 

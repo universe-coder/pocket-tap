@@ -25,18 +25,21 @@ jobs:
       - run: python -m pytest -q
       - name: Build PocketTap-windows.exe
         run: >
-          pyinstaller --onefile --name PocketTap-windows
+          pyinstaller --onefile --windowed --name PocketTap-windows
           --paths .
           --add-data "pc_remote/static;pc_remote/static"
           --hidden-import pynput.keyboard._win32
           --hidden-import pynput.mouse._win32
+          --hidden-import pystray._win32
           packaging/launcher.py
       - name: Smoke test
         shell: pwsh
         run: |
-          $out = dist\PocketTap-windows.exe --version
-          if ($LASTEXITCODE -ne 0) { exit 1 }
-          $out
+          # A window build has no console, so check the exit code rather than the output.
+          $p = Start-Process -FilePath dist\PocketTap-windows.exe -ArgumentList "--version" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { exit 1 }
+          $p = Start-Process -FilePath dist\PocketTap-windows.exe -ArgumentList "--self-test" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { exit 1 }
       - uses: actions/upload-artifact@v4
         with:
           name: PocketTap-windows

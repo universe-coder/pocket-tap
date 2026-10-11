@@ -1,8 +1,12 @@
 """HTTP + WebSocket server: serves the phone UI and turns its messages into input."""
 
 import hmac
+import itertools
 import json
+import re
 import logging
+import threading
+import time
 from pathlib import Path
 
 from aiohttp import WSMsgType, web
@@ -18,6 +22,32 @@ MAX_SCROLL = 50
 
 BACKEND_KEY = web.AppKey("backend", object)
 TOKEN_KEY = web.AppKey("token", str)
+
+
+class Clients:
+    """Phones connected right now. Read from other threads (the PC window)."""
+
+    def __init__(self):
+        self._lock = threading.Lock()
+        self._items = {}
+        self._ids = itertools.count(1)
+
+    def add(self, address, user_agent):
+        with self._lock:
+            cid = next(self._ids)
+            self._items[cid] = {"address": address, "user_agent": user_agent, "since": time.time()}
+            return cid
+
+    def remove(self, cid):
+        with self._lock:
+            self._items.pop(cid, None)
+
+    def snapshot(self):
+        with self._lock:
+            return [dict(c, id=cid) for cid, c in self._items.items()]
+
+
+CLIENTS_KEY = web.AppKey("clients", Clients)
 
 
 class BadMessage(ValueError):
@@ -88,9 +118,17 @@ async def ws_handler(request):
     ws = web.WebSocketResponse(heartbeat=20)
     await ws.prepare(request)
     log.info("phone connected: %s", request.remote)
-    await ws.send_json({"type": "hello"})
+    cid = request.app[CLIENTS_KEY].add(request.remote, request.headers.get("User-Agent", ""))
+    try:
+        await ws.send_json({"type": "hello"})
+        await _serve(request.app[BACKEND_KEY], ws)
+    finally:
+        request.app[CLIENTS_KEY].remove(cid)
+    log.info("phone disconnected: %s", request.remote)
+    return ws
 
-    backend = request.app[BACKEND_KEY]
+
+async def _serve(backend, ws):
     async for raw in ws:
         if raw.type != WSMsgType.TEXT:
             continue
@@ -102,16 +140,14 @@ async def ws_handler(request):
             log.exception("input backend failed")
             await ws.send_json({"type": "error", "message": "input failed on PC"})
 
-    log.info("phone disconnected: %s", request.remote)
-    return ws
-
 
 async def index(request):
     return web.FileResponse(STATIC_DIR / "index.html")
 
 
-def create_app(backend, token):
+def create_app(backend, token, clients=None):
     app = web.Application()
+    app[CLIENTS_KEY] = clients if clients is not None else Clients()
     app[BACKEND_KEY] = backend
     app[TOKEN_KEY] = token
     app.router.add_get("/", index)
@@ -119,3 +155,29 @@ def create_app(backend, token):
     app.router.add_get("/ws", ws_handler)
     app.router.add_static("/static/", STATIC_DIR)
     return app
+
+
+def describe_device(user_agent):
+    """Short human name for a phone from its User-Agent, e.g. 'Android 14 · Chrome'."""
+    ua = user_agent or ""
+    os_name = ""
+    m = re.search(r"Android (\d+(?:\.\d+)?)", ua)
+    if m:
+        os_name = f"Android {m.group(1)}"
+    elif "iPhone" in ua or "iPad" in ua:
+        m = re.search(r"OS (\d+)[_\d]*", ua)
+        os_name = ("iPad" if "iPad" in ua else "iPhone") + (f" · iOS {m.group(1)}" if m else "")
+    elif "Windows" in ua:
+        os_name = "Windows"
+    elif "Mac OS X" in ua:
+        os_name = "macOS"
+    elif "Linux" in ua:
+        os_name = "Linux"
+    browser = ""
+    for token, name in (("SamsungBrowser", "Samsung Internet"), ("YaBrowser", "Yandex Browser"),
+                        ("EdgA", "Edge"), ("Edg/", "Edge"), ("OPR", "Opera"), ("Firefox", "Firefox"),
+                        ("FxiOS", "Firefox"), ("CriOS", "Chrome"), ("Chrome", "Chrome"), ("Safari", "Safari")):
+        if token in ua:
+            browser = name
+            break
+    return " · ".join(p for p in (os_name, browser) if p) or "?"

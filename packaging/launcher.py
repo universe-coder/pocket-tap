@@ -9,6 +9,14 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         pass
-    except Exception:  # noqa: BLE001 - keep the console open so the error can be read
-        traceback.print_exc()
-        input("\nPress Enter to close")
+    except Exception:  # noqa: BLE001 - the window build has no console: show the error
+        details = traceback.format_exc()
+        try:
+            import tkinter
+            from tkinter import messagebox
+            root = tkinter.Tk()
+            root.withdraw()
+            messagebox.showerror("PocketTap", details)
+        except Exception:  # noqa: BLE001
+            print(details)
+            input("\nPress Enter to close")

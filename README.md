@@ -24,7 +24,7 @@ Turn your phone into a remote control for your PC over home Wi-Fi. Built for wat
 <tr><td align="center"><img src="docs/screenshots/phone-arabic.png" width="180" alt="Arabic, right to left"><br><sub>Arabic, right to left</sub></td><td align="center"><img src="docs/screenshots/phone-japanese.png" width="180" alt="Japanese"><br><sub>Japanese</sub></td><td></td></tr>
 </table>
 
-<p align="center"><img src="docs/screenshots/pc-qr.png" width="520" alt="PC program: scan the QR code with your phone"><br><sub>PC program: scan the QR code with your phone</sub></p>
+<p align="center"><img src="docs/screenshots/pc-window.png" width="520" alt="PC program: scan the QR code with your phone"><br><sub>PC program: scan the QR code with your phone</sub></p>
 
 Two parts:
 
@@ -40,6 +40,8 @@ The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian
 **Touchpad**: move the cursor with a finger, tap to click, two-finger tap to right-click, two-finger scroll, and Back, Forward and Refresh buttons for the browser.
 
 **Keyboard**: type text on the PC (for example, a YouTube search), Enter, Esc, arrows and other keys.
+
+**PC window**: the QR code, a network picker (if the phone can't connect, pick the network it is on, usually Wi-Fi), the list of connected phones and a log. Closing the window keeps PocketTap running in the tray on Windows (minimized on macOS and Linux); quit from the tray icon's menu. The program checks GitHub for a new version and offers to download it.
 
 ## Getting started
 
@@ -64,6 +66,8 @@ The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian
 The pairing key is saved, so you don't need to scan again after restarting the PC. To issue a new key (old phones get disconnected): `--reset-token`, for example `start-windows.bat --reset-token`.
 
 The PC program prints its messages in the system language; choose another one with `--lang en|ar|zh|ja|ru|de|gsw`.
+
+Run `--console` to use the terminal instead of a window, or `--minimized` to start hidden in the tray.
 
 ## How media control works
 
@@ -91,6 +95,8 @@ Layout:
 - `pc_remote/actions.py`: which keys each button presses
 - `pc_remote/app.py`: HTTP and WebSocket server, message validation
 - `pc_remote/backend.py`: key presses through pynput, and the dry-run mode
+- `pc_remote/gui.py`: the PC window and tray icon; `server.py` runs the server beside it
+- `pc_remote/updates.py`: the GitHub release check
 - `pc_remote/i18n.py`: the PC program's messages in every language
 - `pc_remote/static/`: the phone app; translations live in `static/locales/`
 

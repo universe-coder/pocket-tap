@@ -2,3 +2,5 @@ aiohttp>=3.9
 pynput>=1.7.6
 qrcode>=7.4
 psutil>=5.9
+pillow>=10
+pystray>=0.19
