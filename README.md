@@ -20,7 +20,7 @@ Turn your phone into a remote control for your PC over home Wi-Fi. Built for wat
 ## Screenshots
 
 <table>
-<tr><td align="center"><img src="docs/screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="docs/screenshots/phone-touchpad.png" width="180" alt="Touchpad"><br><sub>Touchpad</sub></td><td align="center"><img src="docs/screenshots/phone-keyboard.png" width="180" alt="Keyboard"><br><sub>Keyboard</sub></td></tr>
+<tr><td align="center"><img src="docs/screenshots/phone-media.png" width="180" alt="Media"><br><sub>Media</sub></td><td align="center"><img src="docs/screenshots/phone-touchpad.png" width="180" alt="Touchpad"><br><sub>Touchpad</sub></td><td align="center"><img src="docs/screenshots/phone-keyboard.png" width="180" alt="Keyboard"><br><sub>Keyboard</sub></td></tr>
 <tr><td align="center"><img src="docs/screenshots/phone-arabic.png" width="180" alt="Arabic, right to left"><br><sub>Arabic, right to left</sub></td><td align="center"><img src="docs/screenshots/phone-japanese.png" width="180" alt="Japanese"><br><sub>Japanese</sub></td><td></td></tr>
 </table>
 
@@ -35,7 +35,7 @@ The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian
 
 ## Features
 
-**YouTube**: a big play/pause button, seek ±10 seconds (hold to keep seeking), next and previous video, system volume, playback speed, captions, full screen.
+**Media**: works with any player (YouTube, Netflix, Spotify, VLC and others): a big play/pause button, rewind and fast forward (hold to keep seeking), next and previous, system volume, full screen. For YouTube there are also playback speed and captions.
 
 **Touchpad**: move the cursor with a finger, tap to click, two-finger tap to right-click, two-finger scroll, and Back, Forward and Refresh buttons for the browser.
 
@@ -65,10 +65,10 @@ The pairing key is saved, so you don't need to scan again after restarting the P
 
 The PC program prints its messages in the system language; choose another one with `--lang en|ar|zh|ja|ru|de|gsw`.
 
-## How YouTube control works
+## How media control works
 
-- **Play/pause, next, previous and volume** use media keys, so they work even when the browser window isn't focused.
-- **Seeking, speed, captions and full screen** are YouTube hotkeys and need the video tab focused. If they do nothing, open the Touchpad tab and click the video.
+- **Play/pause, next, previous and volume** use media keys, so they reach whatever is playing even when its window isn't focused.
+- **Rewind, fast forward and full screen** press the arrow keys and F, which most players understand, so the player window has to be focused. If they do nothing, open the Touchpad tab and click the video. **Speed and captions** are YouTube hotkeys.
 
 ## Phone screen
 

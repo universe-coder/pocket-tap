@@ -20,7 +20,7 @@
 ## スクリーンショット
 
 <table>
-<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="タッチパッド"><br><sub>タッチパッド</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="キーボード"><br><sub>キーボード</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-media.png" width="180" alt="メディア"><br><sub>メディア</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="タッチパッド"><br><sub>タッチパッド</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="キーボード"><br><sub>キーボード</sub></td></tr>
 <tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="アラビア語（右から左）"><br><sub>アラビア語（右から左）</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="日本語"><br><sub>日本語</sub></td><td></td></tr>
 </table>
 
@@ -35,7 +35,7 @@
 
 ## できること
 
-**YouTube**：大きな一時停止/再生ボタン、10 秒スキップ（長押しで連続）、前の動画・次の動画、システム音量、再生速度、字幕、全画面。
+**メディア**：どのプレーヤーでも使えます（YouTube、Netflix、Spotify、VLC など）。大きな一時停止/再生ボタン、巻き戻し・早送り（長押しで連続）、前へ・次へ、システム音量、全画面。YouTube では再生速度と字幕も操作できます。
 
 **タッチパッド**：指でカーソル移動、タップでクリック、2 本指タップで右クリック、2 本指スクロール、ブラウザの「戻る」「進む」「更新」ボタン。
 
@@ -65,10 +65,10 @@
 
 PC 用プログラムはシステムの言語でメッセージを表示します。別の言語にするには `--lang en|ar|zh|ja|ru|de|gsw` を指定します。
 
-## YouTube 操作のしくみ
+## メディア操作のしくみ
 
-- **一時停止・次へ・前へ・音量**はメディアキーを使うので、ブラウザのウィンドウがアクティブでなくても動きます。
-- **シーク・速度・字幕・全画面**は YouTube のショートカットキーなので、動画のタブがアクティブである必要があります。反応しない場合は「タッチパッド」を開いて動画をクリックしてください。
+- **一時停止/再生・次へ・前へ・音量**はメディアキーを使うので、再生中のアプリのウィンドウがアクティブでなくても届きます。
+- **巻き戻し・早送り・全画面**はほとんどのプレーヤーが対応している矢印キーと F キーを押すため、プレーヤーのウィンドウがアクティブである必要があります。反応しない場合は「タッチパッド」を開いて動画をクリックしてください。**速度と字幕**は YouTube のショートカットキーです。
 
 ## スマートフォンの画面
 

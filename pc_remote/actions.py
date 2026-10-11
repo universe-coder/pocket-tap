@@ -13,21 +13,20 @@ SPECIAL_KEYS = frozenset({
     "media_volume_up", "media_volume_down", "media_volume_mute",
 })
 
-# Play/pause, next and previous use media keys: Chrome, Edge and Firefox route
-# them to the YouTube tab even when the browser window is not focused.
-# The rest are YouTube player hotkeys and need the YouTube tab in focus.
+# Play/pause, next and previous are media keys: Windows, macOS and Linux route
+# them to whatever is playing (browser tab, Spotify, VLC, ...) even when that
+# window is not focused. Seek and full screen use the keys most players share
+# (arrows, F) and need the player window in focus. Speed and captions are
+# YouTube hotkeys; the page labels them as such.
 ACTIONS = {
-    # YouTube
-    "yt.play_pause": ("media_play_pause",),
-    "yt.next": ("media_next",),
-    "yt.previous": ("media_previous",),
-    "yt.seek_back_10": ("j",),
-    "yt.seek_fwd_10": ("l",),
-    "yt.seek_back_5": ("left",),
-    "yt.seek_fwd_5": ("right",),
-    "yt.fullscreen": ("f",),
-    "yt.theater": ("t",),
-    "yt.mute": ("m",),
+    # Any player
+    "media.play_pause": ("media_play_pause",),
+    "media.next": ("media_next",),
+    "media.previous": ("media_previous",),
+    "media.seek_back": ("left",),
+    "media.seek_fwd": ("right",),
+    "media.fullscreen": ("f",),
+    # YouTube only
     "yt.captions": ("c",),
     "yt.speed_up": ("shift", "."),
     "yt.speed_down": ("shift", ","),

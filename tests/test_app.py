@@ -30,7 +30,7 @@ def test_special_keys_resolve_in_pynput():
 
 
 @pytest.mark.parametrize("msg, call", [
-    ({"type": "action", "name": "yt.play_pause"}, ("combo", ("media_play_pause",))),
+    ({"type": "action", "name": "media.play_pause"}, ("combo", ("media_play_pause",))),
     ({"type": "action", "name": "yt.speed_up"}, ("combo", ("shift", "."))),
     ({"type": "key", "keys": ["ctrl", "w"]}, ("combo", ("ctrl", "w"))),
     ({"type": "text", "text": "привет"}, ("text", "привет")),
@@ -86,13 +86,13 @@ async def test_websocket_rejects_bad_token(client):
 async def test_websocket_drives_backend(client, backend):
     async with client.ws_connect(f"/ws?t={TOKEN}") as ws:
         assert (await ws.receive_json())["type"] == "hello"
-        await ws.send_json({"type": "action", "name": "yt.seek_fwd_10"})
+        await ws.send_json({"type": "action", "name": "media.seek_fwd"})
         await ws.send_json({"type": "action", "name": "bogus"})
         error = await ws.receive_json()
         assert error["type"] == "error"
         await ws.send_str("not json")
         assert (await ws.receive_json())["type"] == "error"
-    assert backend.calls == [("combo", ("l",))]
+    assert backend.calls == [("combo", ("right",))]
 
 
 def test_candidate_ips_prefer_home_network_over_vpn():

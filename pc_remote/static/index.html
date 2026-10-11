@@ -21,21 +21,21 @@
   </header>
 
   <main>
-    <section id="tab-youtube" class="tab tab--active" aria-label="YouTube">
-      <button class="btn btn--hero" data-action="yt.play_pause" data-i18n-aria="yt.playPause" aria-label="Pause / Play">
+    <section id="tab-media" class="tab tab--active" data-i18n-aria="tab.media" aria-label="Media">
+      <button class="btn btn--hero" data-action="media.play_pause" data-i18n-aria="media.playPause" aria-label="Pause / Play">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5v14l9-7zM14 5h3v14h-3zM19 5h3v14h-3z"/></svg>
-        <span data-i18n="yt.playPause">Pause / Play</span>
+        <span data-i18n="media.playPause">Pause / Play</span>
       </button>
 
       <!-- Media controls keep their left-to-right order in right-to-left languages too;
            dir="auto" still lets an Arabic label read right to left inside its button. -->
       <div class="row" dir="ltr">
-        <button class="btn btn--big" data-action="yt.seek_back_10" dir="auto" data-repeat data-i18n="yt.seekBack">−10 s</button>
-        <button class="btn btn--big" data-action="yt.seek_fwd_10" dir="auto" data-repeat data-i18n="yt.seekFwd">+10 s</button>
+        <button class="btn btn--big" data-action="media.seek_back" data-repeat data-i18n-aria="media.seekBack" aria-label="Rewind"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 6v12L2 12zM21 6v12l-9-6z"/></svg></button>
+        <button class="btn btn--big" data-action="media.seek_fwd" data-repeat data-i18n-aria="media.seekFwd" aria-label="Fast forward"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6v12l9-6zM13 6v12l9-6z"/></svg></button>
       </div>
       <div class="row" dir="ltr">
-        <button class="btn" data-action="yt.previous" dir="auto" data-i18n="yt.previous">⏮ Previous</button>
-        <button class="btn" data-action="yt.next" dir="auto" data-i18n="yt.next">Next ⏭</button>
+        <button class="btn" data-action="media.previous" dir="auto" data-i18n="media.previous">⏮ Previous</button>
+        <button class="btn" data-action="media.next" dir="auto" data-i18n="media.next">Next ⏭</button>
       </div>
       <div class="row">
         <button class="btn" data-action="sys.volume_down" data-repeat data-i18n="sys.volDown">Vol −</button>
@@ -43,12 +43,15 @@
         <button class="btn" data-action="sys.volume_up" data-repeat data-i18n="sys.volUp">Vol +</button>
       </div>
       <div class="row">
+        <button class="btn btn--small" data-action="media.fullscreen" data-i18n="media.fullscreen">Full screen</button>
+      </div>
+      <h2 class="group-label" data-i18n="yt.only">YouTube only</h2>
+      <div class="row">
         <button class="btn btn--small" data-action="yt.speed_down" data-i18n="yt.speedDown">Speed −</button>
         <button class="btn btn--small" data-action="yt.speed_up" data-i18n="yt.speedUp">Speed +</button>
         <button class="btn btn--small" data-action="yt.captions" data-i18n="yt.captions">Captions</button>
-        <button class="btn btn--small" data-action="yt.fullscreen" data-i18n="yt.fullscreen">Full screen</button>
       </div>
-      <p class="hint" data-i18n="yt.hint">Pause, next and previous always work. Seeking, speed and full screen need the YouTube tab in focus: if they do nothing, click the video from the Touchpad tab.</p>
+      <p class="hint" data-i18n="media.hint">Play/pause, next, previous and volume work with any player, even in the background. Rewind, fast forward and full screen need the player window in focus: if they do nothing, click the video from the Touchpad tab.</p>
     </section>
 
     <section id="tab-touchpad" class="tab" data-i18n-aria="tab.touchpad" aria-label="Touchpad">
@@ -92,7 +95,7 @@ Tap to click, two fingers to scroll</span>
   </main>
 
   <nav class="tabbar">
-    <button class="tabbar__item tabbar__item--active" data-tab="youtube" data-i18n="tab.youtube">YouTube</button>
+    <button class="tabbar__item tabbar__item--active" data-tab="media" data-i18n="tab.media">Media</button>
     <button class="tabbar__item" data-tab="touchpad" data-i18n="tab.touchpad">Touchpad</button>
     <button class="tabbar__item" data-tab="keyboard" data-i18n="tab.keyboard">Keyboard</button>
   </nav>

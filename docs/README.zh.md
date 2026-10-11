@@ -20,7 +20,7 @@
 ## 截图
 
 <table>
-<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="触控板"><br><sub>触控板</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="键盘"><br><sub>键盘</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-media.png" width="180" alt="媒体"><br><sub>媒体</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="触控板"><br><sub>触控板</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="键盘"><br><sub>键盘</sub></td></tr>
 <tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="阿拉伯语，从右到左"><br><sub>阿拉伯语，从右到左</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="日语"><br><sub>日语</sub></td><td></td></tr>
 </table>
 
@@ -35,7 +35,7 @@
 
 ## 功能
 
-**YouTube**：大号暂停/播放按钮，快退/快进 10 秒（按住可连续快进），上一个和下一个视频，系统音量，播放速度，字幕，全屏。
+**媒体**：适用于任何播放器（YouTube、Netflix、Spotify、VLC 等）：大号暂停/播放按钮，快退和快进（按住可连续），上一个和下一个，系统音量，全屏。YouTube 还可调节播放速度和字幕。
 
 **触控板**：手指移动光标，轻点单击，双指轻点右键，双指滚动，以及浏览器的后退、前进、刷新按钮。
 
@@ -65,10 +65,10 @@
 
 电脑端程序使用系统语言显示消息；可用 `--lang en|ar|zh|ja|ru|de|gsw` 指定其他语言。
 
-## YouTube 控制原理
+## 媒体控制原理
 
-- **暂停、上一个、下一个和音量**使用多媒体键，即使浏览器窗口不在前台也能生效。
-- **快进快退、速度、字幕和全屏**是 YouTube 快捷键，需要视频标签页处于焦点。如果没有反应，请打开"触控板"并点击一下视频。
+- **暂停/播放、上一个、下一个和音量**使用媒体键，所以即使正在播放的窗口不在焦点，也能控制它。
+- **快退、快进和全屏**发送大多数播放器都支持的方向键和 F 键，因此播放器窗口需要处于焦点。如果没有反应，请打开"触控板"并点击一下视频。**速度和字幕**是 YouTube 快捷键。
 
 ## 手机屏幕
 

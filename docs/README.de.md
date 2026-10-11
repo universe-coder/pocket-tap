@@ -20,7 +20,7 @@ Das Handy wird zur Fernbedienung für den PC, über das WLAN zu Hause. Gedacht z
 ## Screenshots
 
 <table>
-<tr><td align="center"><img src="screenshots/phone-youtube.png" width="180" alt="YouTube"><br><sub>YouTube</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="Touchpad"><br><sub>Touchpad</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="Tastatur"><br><sub>Tastatur</sub></td></tr>
+<tr><td align="center"><img src="screenshots/phone-media.png" width="180" alt="Medien"><br><sub>Medien</sub></td><td align="center"><img src="screenshots/phone-touchpad.png" width="180" alt="Touchpad"><br><sub>Touchpad</sub></td><td align="center"><img src="screenshots/phone-keyboard.png" width="180" alt="Tastatur"><br><sub>Tastatur</sub></td></tr>
 <tr><td align="center"><img src="screenshots/phone-arabic.png" width="180" alt="Arabisch, von rechts nach links"><br><sub>Arabisch, von rechts nach links</sub></td><td align="center"><img src="screenshots/phone-japanese.png" width="180" alt="Japanisch"><br><sub>Japanisch</sub></td><td></td></tr>
 </table>
 
@@ -35,7 +35,7 @@ Die Handy-App spricht Englisch, Arabisch (von rechts nach links), Chinesisch, Ja
 
 ## Funktionen
 
-**YouTube**: große Pause/Play-Taste, ±10 Sekunden spulen (gedrückt halten zum Weiterspulen), nächstes und vorheriges Video, Systemlautstärke, Wiedergabetempo, Untertitel, Vollbild.
+**Medien**: funktioniert mit jedem Player (YouTube, Netflix, Spotify, VLC und andere): große Pause/Play-Taste, zurück- und vorspulen (gedrückt halten zum Weiterspulen), nächster und vorheriger Titel, Systemlautstärke, Vollbild. Für YouTube zusätzlich Wiedergabetempo und Untertitel.
 
 **Touchpad**: Zeiger mit dem Finger bewegen, Tippen ist ein Klick, Tippen mit zwei Fingern ein Rechtsklick, Scrollen mit zwei Fingern, dazu Zurück, Vor und Neu laden für den Browser.
 
@@ -65,10 +65,10 @@ Der Kopplungsschlüssel wird gespeichert, nach einem Neustart des PCs muss nicht
 
 Das PC-Programm schreibt seine Meldungen in der Systemsprache; eine andere wählt `--lang en|ar|zh|ja|ru|de|gsw`.
 
-## So funktioniert die YouTube-Steuerung
+## So funktioniert die Mediensteuerung
 
-- **Pause, Nächstes, Vorheriges und Lautstärke** laufen über Medientasten und funktionieren auch, wenn das Browserfenster nicht aktiv ist.
-- **Spulen, Tempo, Untertitel und Vollbild** sind YouTube-Tastenkürzel und brauchen den aktiven Video-Tab. Wenn nichts passiert, im Tab «Touchpad» auf das Video klicken.
+- **Pause/Play, Nächstes, Vorheriges und Lautstärke** laufen über Medientasten und erreichen deshalb das, was gerade spielt, auch wenn sein Fenster nicht aktiv ist.
+- **Spulen und Vollbild** drücken die Pfeiltasten und F, die die meisten Player verstehen, deshalb muss das Player-Fenster aktiv sein. Wenn nichts passiert, im Tab «Touchpad» auf das Video klicken. **Tempo und Untertitel** sind YouTube-Tastenkürzel.
 
 ## Handybildschirm
 

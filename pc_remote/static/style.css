@@ -118,7 +118,10 @@ main {
 .btn--hero svg { width: 72px; height: 72px; fill: currentColor; }
 
 .btn--big { min-height: 96px; font-size: 22px; }
+.btn .icon { width: 44px; height: 44px; fill: currentColor; vertical-align: middle; }
 .btn--small { min-height: 56px; font-size: 13px; }
+
+.group-label { margin: 4px 2px -4px; font-size: 13px; font-weight: 600; color: var(--muted); }
 
 .hint { margin: 4px 2px 0; font-size: 13px; color: var(--muted); }
 
