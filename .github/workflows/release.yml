@@ -1,7 +1,7 @@
 name: release
 # Push a tag like v1.0.0, or run the workflow by hand with a version, to publish
-# a GitHub Release with the Windows program attached. Running it by hand without
-# a version only builds the program (see the run's artifacts).
+# a GitHub Release with the Windows and macOS programs attached. Running it by
+# hand without a version only builds them (see the run's artifacts).
 on:
   push:
     tags: ["v*"]
@@ -14,8 +14,6 @@ on:
 jobs:
   windows:
     runs-on: windows-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,11 +43,61 @@ jobs:
         with:
           name: PocketTap-windows
           path: dist/PocketTap-windows.exe
-      - name: Publish release
-        if: startsWith(github.ref, 'refs/tags/v') || inputs.version != ''
-        uses: softprops/action-gh-release@v2
+
+  macos:
+    strategy:
+      matrix:
+        include:
+          - runner: macos-15        # Apple Silicon (M1 and newer)
+            arch: apple-silicon
+          - runner: macos-15-intel  # Intel Macs
+            arch: intel
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements.txt -r requirements-dev.txt pyinstaller
+      - run: python -m pytest -q
+      - name: Build PocketTap.app
+        run: >
+          pyinstaller --windowed --name PocketTap
+          --paths .
+          --icon pc_remote/static/icon-512.png
+          --osx-bundle-identifier io.github.universe-coder.pockettap
+          --add-data "pc_remote/static:pc_remote/static"
+          --hidden-import pynput.keyboard._darwin
+          --hidden-import pynput.mouse._darwin
+          packaging/launcher.py
+      - name: Smoke test
+        run: |
+          dist/PocketTap.app/Contents/MacOS/PocketTap --version
+          dist/PocketTap.app/Contents/MacOS/PocketTap --self-test
+      - name: Zip
+        # ditto keeps the app bundle's symlinks and signature intact.
+        run: ditto -c -k --keepParent dist/PocketTap.app PocketTap-macos-${{ matrix.arch }}.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PocketTap-macos-${{ matrix.arch }}
+          path: PocketTap-macos-${{ matrix.arch }}.zip
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v') || inputs.version != ''
+    needs: [windows, macos]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.version || github.ref_name }}
           target_commitish: ${{ github.sha }}
-          files: dist/PocketTap-windows.exe
+          files: |
+            PocketTap-windows.exe
+            PocketTap-macos-apple-silicon.zip
+            PocketTap-macos-intel.zip
           generate_release_notes: true

@@ -7,6 +7,20 @@ import sys
 log = logging.getLogger(__name__)
 
 
+def input_allowed(prompt=False):
+    """macOS lets a program press keys and move the mouse only once the user turns
+    it on under Privacy & Security > Accessibility. With prompt=True macOS shows
+    its own dialog pointing there. True on other systems or when it cannot tell."""
+    if sys.platform != "darwin":
+        return True
+    try:
+        import HIServices
+        options = {HIServices.kAXTrustedCheckOptionPrompt: prompt}
+        return bool(HIServices.AXIsProcessTrustedWithOptions(options))
+    except Exception:  # noqa: BLE001 - never block start-up on this check
+        return True
+
+
 class DryRunBackend:
     def __init__(self):
         self.calls = []

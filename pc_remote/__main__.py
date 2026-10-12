@@ -77,6 +77,7 @@ def run_console(args, backend, token, lang):
         for c, name in others:
             print(f"  {c}  {name}")
         print()
+    warn_if_input_blocked(backend, lang)
     web.run_app(create_app(backend, token), host=args.host, port=args.port, print=None, loop=make_loop())
 
 
@@ -88,7 +89,14 @@ def run_window(args, backend, token, lang):
     server.start()
     server.ready.wait(10)
     app = App(server, clients, token, args.port, lang, preferred_ip=args.ip)
+    warn_if_input_blocked(backend, lang)  # after App, so the warning shows in its log
     app.run(start_hidden=args.minimized)
+
+
+def warn_if_input_blocked(backend, lang):
+    from .backend import PynputBackend, input_allowed
+    if isinstance(backend, PynputBackend) and not input_allowed(prompt=True):
+        logging.warning(tr(lang, "mac_accessibility"))
 
 
 def main(argv=None):
@@ -113,6 +121,9 @@ def main(argv=None):
         # Used by the release build: fails if the bundle misses a module the window needs.
         if sys.platform == "win32":
             import pystray  # noqa: F401
+        if sys.platform == "darwin":
+            import HIServices  # noqa: F401
+            from pynput import keyboard, mouse  # noqa: F401
         from . import gui  # noqa: F401
         from .backend import PynputBackend  # noqa: F401
         return

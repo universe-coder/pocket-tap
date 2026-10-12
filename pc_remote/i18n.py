@@ -34,6 +34,7 @@ MESSAGES = {
         "tray_check": "Check for updates",
         "tray_quit": "Quit",
         "tray_hidden": "PocketTap keeps running in the tray. Right-click the icon to quit.",
+        "mac_accessibility": "macOS has not allowed PocketTap to control the keyboard and mouse yet. Turn it on in System Settings → Privacy & Security → Accessibility (for PocketTap, or for your terminal if you started it from one), then restart PocketTap.",
     },
     "ar": {
         "scan": "امسح رمز QR بهاتفك (على شبكة Wi-Fi نفسها مع هذا الكمبيوتر)",
@@ -59,6 +60,7 @@ MESSAGES = {
         "tray_check": "التحقق من التحديثات",
         "tray_quit": "إنهاء",
         "tray_hidden": "يستمر PocketTap في العمل في علبة النظام. انقر على الأيقونة بزر الماوس الأيمن للإنهاء.",
+        "mac_accessibility": "لم يسمح macOS بعد لـ PocketTap بالتحكم في لوحة المفاتيح والماوس. فعّل ذلك في إعدادات النظام ← الخصوصية والأمان ← تسهيلات الاستخدام (لـ PocketTap، أو للطرفية إذا شغّلته منها)، ثم أعد تشغيل PocketTap.",
     },
     "zh": {
         "scan": "用手机扫描二维码（手机和电脑需连接同一 Wi-Fi）",
@@ -84,6 +86,7 @@ MESSAGES = {
         "tray_check": "检查更新",
         "tray_quit": "退出",
         "tray_hidden": "PocketTap 会继续在托盘中运行。右键单击图标即可退出。",
+        "mac_accessibility": "macOS 尚未允许 PocketTap 控制键盘和鼠标。请在“系统设置 → 隐私与安全性 → 辅助功能”中为 PocketTap（如果从终端启动，则为终端）开启权限，然后重新启动 PocketTap。",
     },
     "ja": {
         "scan": "スマートフォンでQRコードを読み取ってください（このPCと同じWi-Fiに接続）",
@@ -109,6 +112,7 @@ MESSAGES = {
         "tray_check": "更新を確認",
         "tray_quit": "終了",
         "tray_hidden": "PocketTap はトレイで動作し続けます。終了するにはアイコンを右クリックしてください。",
+        "mac_accessibility": "macOS がまだ PocketTap にキーボードとマウスの操作を許可していません。「システム設定 → プライバシーとセキュリティ → アクセシビリティ」で PocketTap（ターミナルから起動した場合はターミナル）をオンにして、PocketTap を再起動してください。",
     },
     "ru": {
         "scan": "Отсканируйте QR-код телефоном (телефон и ПК в одной Wi-Fi сети)",
@@ -134,6 +138,7 @@ MESSAGES = {
         "tray_check": "Проверить обновления",
         "tray_quit": "Выход",
         "tray_hidden": "PocketTap продолжает работать в трее. Чтобы выйти, щёлкните значок правой кнопкой.",
+        "mac_accessibility": "macOS ещё не разрешила PocketTap управлять клавиатурой и мышью. Включите это в Системных настройках → Конфиденциальность и безопасность → Универсальный доступ (для PocketTap или для терминала, если запускали из него) и перезапустите PocketTap.",
     },
     "de": {
         "scan": "Scanne den QR-Code mit dem Handy (im selben WLAN wie dieser PC)",
@@ -159,6 +164,7 @@ MESSAGES = {
         "tray_check": "Nach Updates suchen",
         "tray_quit": "Beenden",
         "tray_hidden": "PocketTap läuft im Infobereich weiter. Zum Beenden mit der rechten Maustaste auf das Symbol klicken.",
+        "mac_accessibility": "macOS hat PocketTap noch nicht erlaubt, Tastatur und Maus zu steuern. Schalten Sie es unter Systemeinstellungen → Datenschutz & Sicherheit → Bedienungshilfen ein (für PocketTap oder für das Terminal, falls Sie es von dort gestartet haben) und starten Sie PocketTap neu.",
     },
     "gsw": {
         "scan": "Scann de QR-Code mit em Handy (im gliiche WLAN wie dä PC)",
@@ -184,6 +190,7 @@ MESSAGES = {
         "tray_check": "Nach Updates sueche",
         "tray_quit": "Beände",
         "tray_hidden": "PocketTap lauft im Infobereich wiiter. Zum Beände mit de rächte Muustaste ufs Symbol klicke.",
+        "mac_accessibility": "macOS het PocketTap no nöd erlaubt, Tastatur und Muus z stüüre. Schalt das under Systemiistellige → Dateschutz & Sicherheit → Bedienigshilfe ii (für PocketTap oder fürs Terminal, wenn du s vo dört gstartet hesch) und start PocketTap neu.",
     },
 }
 
