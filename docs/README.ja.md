@@ -55,6 +55,13 @@
 3. ウィンドウに QR コードが表示されます。スマートフォンのカメラで読み取ってください。スマートフォンは同じ Wi-Fi に接続している必要があります。
 4. ワンタップで開けるようにするには、ホーム画面に追加します。リモコンの画面にお使いのスマホ向けの手順が表示されます。アイコンから開くとペアリング済みの状態で起動し、iPhone では普通のアプリのように動き、Android では最初のタップで全画面になります（HTTPS なしの Wi-Fi では Android のブラウザは完全なインストールを許可しません）。
 
+### macOS：アプリをそのまま使う、Python 不要
+
+1. M1 以降のチップの Mac なら [PocketTap-macos-apple-silicon.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-apple-silicon.zip)、Intel の Mac なら [PocketTap-macos-intel.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-intel.zip) をダウンロードします（ →「この Mac について」で確認できます）。展開して PocketTap を「アプリケーション」にドラッグします。
+2. Apple の署名がないため、最初の起動は macOS にブロックされます。PocketTap を一度開いて警告を閉じ、「システム設定」→「プライバシーとセキュリティ」で **「このまま開く」** をクリックします。
+3. 「プライバシーとセキュリティ」→ **「アクセシビリティ」** で PocketTap を許可するよう求められるので、オンにしてから PocketTap を終了し、もう一度開きます。これがないとキーを押せません。受信ネットワーク接続について聞かれたら許可してください。
+4. Windows と同じく、ウインドウの QR コードをスマートフォンで読み取ります。
+
 ### どの OS でも、Python で
 
 1. [Python 3.9+](https://www.python.org/downloads/) をインストールします。Windows ではインストール時に「Add python.exe to PATH」にチェックを入れてください。

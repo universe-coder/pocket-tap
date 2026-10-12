@@ -55,6 +55,13 @@
 3. 窗口中会出现二维码。用手机相机扫描，手机需要连接同一个 Wi-Fi。
 4. 想一键打开遥控器，就把它添加到主屏幕：遥控器会显示适合你手机的操作步骤。从图标打开时已自动配对；在 iPhone 上像普通应用一样运行，在 Android 上第一次点击后进入全屏（在没有 HTTPS 的 Wi-Fi 下，Android 浏览器不允许完整安装）。
 
+### macOS：现成的应用，无需 Python
+
+1. 搭载 M1 及更新芯片的 Mac 请下载 [PocketTap-macos-apple-silicon.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-apple-silicon.zip)，Intel Mac 请下载 [PocketTap-macos-intel.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-intel.zip)（在  →“关于本机”中可以看到）。解压后把 PocketTap 拖到“应用程序”。
+2. 该应用没有 Apple 签名，所以 macOS 会阻止第一次启动。先打开一次 PocketTap，关闭警告，然后在“系统设置 → 隐私与安全性”中点击 **“仍要打开”**。
+3. macOS 会请你在“隐私与安全性 → **辅助功能**”中允许 PocketTap：打开开关，然后退出并重新打开 PocketTap。否则它无法按键。如果 macOS 询问传入网络连接，请允许。
+4. 和 Windows 一样，用手机扫描窗口中的二维码。
+
 ### 任意系统，使用 Python
 
 1. 安装 [Python 3.9+](https://www.python.org/downloads/)。在 Windows 上安装时勾选 "Add python.exe to PATH"。

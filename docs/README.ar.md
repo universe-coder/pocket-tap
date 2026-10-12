@@ -57,6 +57,13 @@
 3. سيظهر رمز QR في النافذة. امسحه بكاميرا الهاتف، ويجب أن يكون الهاتف على شبكة Wi-Fi نفسها.
 4. لفتح جهاز التحكم بلمسة واحدة أضفه إلى الشاشة الرئيسية: يعرض جهاز التحكم تلميحًا بالخطوات المناسبة لهاتفك. تفتحه الأيقونة مقترنًا مسبقًا؛ على iPhone يعمل كتطبيق عادي، وعلى Android ينتقل إلى ملء الشاشة عند أول لمسة (عبر Wi-Fi دون HTTPS لا تسمح متصفحات Android بالتثبيت الكامل).
 
+### macOS: تطبيق جاهز دون الحاجة إلى Python
+
+1. نزّل [PocketTap-macos-apple-silicon.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-apple-silicon.zip) لجهاز Mac بشريحة M1 أو أحدث، أو [PocketTap-macos-intel.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-intel.zip) لجهاز Mac بمعالج Intel (تجد ذلك في  ← حول هذا الـMac). فك الضغط واسحب PocketTap إلى «التطبيقات».
+2. التطبيق غير موقّع من Apple، لذا يمنع macOS التشغيل الأول. افتح PocketTap مرة واحدة وأغلق التحذير، ثم اذهب إلى إعدادات النظام ← الخصوصية والأمان واضغط **فتح على أي حال**.
+3. يطلب macOS السماح لـ PocketTap في الخصوصية والأمان ← **تسهيلات الاستخدام**: فعّله ثم أغلق PocketTap وافتحه من جديد. بدون ذلك لا يستطيع ضغط المفاتيح. إذا سأل macOS عن الاتصالات الشبكية الواردة فاسمح بها.
+4. امسح رمز QR في النافذة بهاتفك كما في Windows.
+
 ### أي نظام، باستخدام Python
 
 1. ثبّت [Python 3.9+](https://www.python.org/downloads/). على Windows فعّل خيار «Add python.exe to PATH» أثناء التثبيت.

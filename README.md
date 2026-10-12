@@ -7,7 +7,9 @@
 Turn your phone into a remote control for your PC over home Wi-Fi. Built for watching YouTube on the computer while on a treadmill, and controlling the video from the phone.
 
 [![Download for Windows](https://img.shields.io/badge/Download-Windows%20(.exe)-2ea44f?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-windows.exe)
-[![Download ZIP for macOS and Linux](https://img.shields.io/badge/Download-macOS%20%2F%20Linux%20(.zip)-555?style=for-the-badge&logo=github)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
+[![Download for Mac with Apple Silicon](https://img.shields.io/badge/Download-Mac%20Apple%20Silicon-000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-apple-silicon.zip)
+[![Download for Intel Mac](https://img.shields.io/badge/Download-Mac%20Intel-555?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-intel.zip)
+[![Download ZIP for Linux](https://img.shields.io/badge/Download-Linux%20(.zip)-555?style=for-the-badge&logo=linux&logoColor=white)](https://github.com/universe-coder/pocket-tap/archive/refs/heads/main.zip)
 
 [![Release](https://img.shields.io/github/v/release/universe-coder/pocket-tap?label=release&color=2ea44f)](https://github.com/universe-coder/pocket-tap/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/universe-coder/pocket-tap/total?color=2ea44f)](https://github.com/universe-coder/pocket-tap/releases)
@@ -54,6 +56,13 @@ The phone app speaks English, Arabic (right to left), Chinese, Japanese, Russian
 2. When Windows asks about network access, allow it for **private networks**.
 3. A QR code appears in the window. Scan it with your phone camera; the phone must be on the same Wi-Fi.
 4. To open the remote with one tap, add it to the home screen: the remote shows a banner with the steps for your phone. The icon opens it already paired; on iPhone it runs like a regular app, on Android it goes full screen on the first tap (over plain Wi-Fi without HTTPS, Android browsers don't allow a full install).
+
+### macOS: ready-made app, no Python needed
+
+1. Download [PocketTap-macos-apple-silicon.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-apple-silicon.zip) for a Mac with an M1 chip or newer, or [PocketTap-macos-intel.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-intel.zip) for an Intel Mac ( → About This Mac shows which). Unpack it and drag PocketTap to Applications.
+2. The app is not signed by Apple, so macOS blocks the first launch. Open PocketTap once, close the warning, then go to System Settings → Privacy & Security and click **Open Anyway**.
+3. macOS asks to allow PocketTap under Privacy & Security → **Accessibility**: turn it on, then quit and reopen PocketTap. Without this it cannot press keys. If macOS asks about incoming network connections, allow them.
+4. Scan the QR code in the window with your phone, as on Windows.
 
 ### Any system, with Python
 
@@ -102,7 +111,7 @@ Layout:
 - `pc_remote/i18n.py`: the PC program's messages in every language
 - `pc_remote/static/`: the phone app; translations live in `static/locales/`
 
-Releases: pushing a tag such as `v1.0.0` (or running the release workflow with a version) builds `PocketTap-windows.exe` and publishes it on the [Releases](https://github.com/universe-coder/pocket-tap/releases) page. See [CONTRIBUTING.md](CONTRIBUTING.md), including how to add a language.
+Releases: pushing a tag such as `v1.0.0` (or running the release workflow with a version) builds `PocketTap-windows.exe` and the macOS apps and publishes it on the [Releases](https://github.com/universe-coder/pocket-tap/releases) page. See [CONTRIBUTING.md](CONTRIBUTING.md), including how to add a language.
 
 ## License
 

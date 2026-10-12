@@ -55,6 +55,13 @@ Die Handy-App spricht Englisch, Arabisch (von rechts nach links), Chinesisch, Ja
 3. Im Fenster erscheint ein QR-Code. Mit der Handykamera scannen; das Handy muss im selben WLAN sein.
 4. Damit sich die Fernbedienung mit einem Tippen öffnet, legen Sie sie auf den Startbildschirm: Die Fernbedienung zeigt dafür einen Hinweis mit den Schritten für Ihr Handy. Das Symbol öffnet sie bereits gekoppelt; auf dem iPhone läuft sie wie eine normale App, auf Android wechselt sie beim ersten Tippen in den Vollbildmodus (über WLAN ohne HTTPS erlauben Android-Browser keine vollständige Installation).
 
+### macOS: fertige App, ohne Python
+
+1. Laden Sie [PocketTap-macos-apple-silicon.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-apple-silicon.zip) für einen Mac mit M1-Chip oder neuer herunter, oder [PocketTap-macos-intel.zip](https://github.com/universe-coder/pocket-tap/releases/latest/download/PocketTap-macos-intel.zip) für einen Intel-Mac ( → Über diesen Mac zeigt es an). Entpacken Sie die Datei und ziehen Sie PocketTap in «Programme».
+2. Die App ist nicht von Apple signiert, deshalb blockiert macOS den ersten Start. Öffnen Sie PocketTap einmal, schliessen Sie die Warnung und klicken Sie dann unter Systemeinstellungen → Datenschutz & Sicherheit auf **Dennoch öffnen**.
+3. macOS bittet, PocketTap unter Datenschutz & Sicherheit → **Bedienungshilfen** zu erlauben: Schalten Sie es ein, beenden Sie PocketTap und öffnen Sie es erneut. Ohne das kann es keine Tasten drücken. Fragt macOS nach eingehenden Netzwerkverbindungen, erlauben Sie sie.
+4. Scannen Sie den QR-Code im Fenster mit dem Handy, wie unter Windows.
+
 ### Jedes System, mit Python
 
 1. [Python 3.9+](https://www.python.org/downloads/) installieren. Unter Windows bei der Installation «Add python.exe to PATH» ankreuzen.
